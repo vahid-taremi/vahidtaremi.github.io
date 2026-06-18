@@ -755,13 +755,13 @@ const BIO_DEFAULT=`Vahid Taremi is an Iranian composer and a skilled player of t
 
 Taremi pursued his education at the Islamic Azad University, Tehran North Branch, earning both a Bachelor's and a Master's degree in Persian Literature. He also attended the Tehran Conservatory of Music from 2006 to 2009, focusing on playing Iranian instruments.
 
-Throughout his career, he has taught at institutions including Farhang and Honar University 46, Shahid Beheshti University, Tarbiat Modares University, Nafir Artistic and Cultural Institute, Javan Cultural Center, and the Soureh Institute of Graduate Studies.
+Throughout his career, he has taught at institutions including Farhang & Honar University 46, Shahid Beheshti University, Tarbiat Modares University, Nafir Artistic and Cultural Institute, Javan Cultural Center, and the Soureh Institute of Graduate Studies.
 
 As a composer, Taremi has contributed to music albums such as Little Black Fish (HaftCraft, Belgium, 2019), Khayyam Khani (RAHA Records, 2016), Shahre Sangestan (2012), and Khan-e-Hashtom (2010). He has performed in concerts across Europe, Asia, and Iran — including London, Paris, Berlin, Ghent, Oxford, Jakarta, and Brussels.
 
 He has served as a music critic and analyst on Iranian television and radio programs, and has composed scores for films, documentaries, and theatrical productions.`;
 let siteData={bio:BIO_DEFAULT,dynEvents:[],dynAlbums:[]};
-let adminPassword=localStorage.getItem('vt_pass')||'707c4e1d92beaf0f0ccfad6c4672254ecd82dfa8d62f423ad5ac4d3ec91e1c9c';
+let adminPassword=localStorage.getItem('vt_pass_plain')||'707c4e1d92beaf0f0ccfad6c4672254ecd82dfa8d62f423ad5ac4d3ec91e1c9c';
 let jsonbinKey=localStorage.getItem('vt_jb_key')||'';
 let jsonbinId=localStorage.getItem('vt_jb_id')||'';
 async function loadFromCloud(){
@@ -770,11 +770,7 @@ async function loadFromCloud(){
   if(r.ok){const j=await r.json();siteData=j.record;renderDynamic();}}catch(e){}
 }
 async function saveToCloud(){
-  if(!jsonbinKey){
-    // Save to localStorage only
-    localStorage.setItem('vt_data', JSON.stringify(siteData));
-    return Promise.resolve(true);
-  }
+  if(!jsonbinKey){alert('Please enter your JSONBin API key first.');return false;}
   try{
     if(!jsonbinId){const r=await fetch('https://api.jsonbin.io/v3/b',{method:'POST',headers:{'Content-Type':'application/json','X-Master-Key':jsonbinKey,'X-Bin-Name':'VahidTaremi'},body:JSON.stringify(siteData)});const j=await r.json();jsonbinId=j.metadata.id;localStorage.setItem('vt_jb_id',jsonbinId);}
     else{await fetch(`https://api.jsonbin.io/v3/b/${jsonbinId}`,{method:'PUT',headers:{'Content-Type':'application/json','X-Master-Key':jsonbinKey},body:JSON.stringify(siteData)});}
@@ -787,84 +783,24 @@ function renderDynamic(){
   if(bioEl)bioEl.innerHTML=siteData.bio.split('\n\n').map(p=>`<p>${p.replace(/\n/g,'<br>')}</p>`).join('');
   const evList=document.getElementById('events-list');
   if(evList&&siteData.dynEvents&&siteData.dynEvents.length){
-    evList.insertAdjacentHTML('afterbegin',siteData.dynEvents.map(e=>`<div class="event-row"><div class="event-date">${e.date}</div><div class="event-info"><h3>${e.title}</h3>${e.desc?`<p>${e.desc}</p>`:''}</div>${e.link?`<a href="${e.link}" target="_blank" rel="noopener noreferrer" class="event-link">Details →</a>`:'<span></span>'}</div>`).join(''));
+    evList.insertAdjacentHTML('afterbegin',siteData.dynEvents.map(e=>'<div class="event-row"><div class="event-date">'+e.date+'</div><div class="event-info"><h3>'+e.title+'</h3>'+(e.desc?'<p>'+e.desc+'</p>':'')+'</div>'+(e.link?'<a href="'+e.link+'" target="_blank" rel="noopener" class="event-link">Details →</a>':'<span></span>')+'</div>').join(''));
   }
   const dg=document.getElementById('disc-grid');
   if(dg&&siteData.dynAlbums&&siteData.dynAlbums.length){
-    dg.insertAdjacentHTML('afterbegin',siteData.dynAlbums.map(a=>`<div class="disc-card">${a.img?`<img class="pt disc-card-img" src="${a.img}" alt="${a.title}" loading="lazy">`:'<div style="background:#e8e2d6;aspect-ratio:1/1;"></div>'}<div class="disc-card-body"><div class="disc-card-title">${a.title}</div><div class="disc-card-meta">${a.meta}<br>${a.year}</div>${a.link?`<div class="disc-links"><div class="disc-link-wrap"><a href="${a.link}" target="_blank" rel="noopener noreferrer" class="disc-link">Listen →</a></div></div>`:''}</div></div>`).join(''));
+    dg.insertAdjacentHTML('afterbegin',siteData.dynAlbums.map(a=>'<div class="disc-card">'+(a.img?'<img class="pt disc-card-img" src="'+a.img+'" alt="'+a.title+'" loading="lazy">':'<div style="background:#e8e2d6;aspect-ratio:1/1;"></div>')+'<div class="disc-card-body"><div class="disc-card-title">'+a.title+'</div><div class="disc-card-meta">'+a.meta+'<br>'+a.year+'</div>'+(a.link?'<div class="disc-links"><a href="'+a.link+'" target="_blank" rel="noopener" class="disc-link">Listen →</a></div>':'')+'</div></div>').join(''));
   }
 }
-function saveBio(){
-  siteData.bio=document.getElementById('admin-bio').value;
-  renderDynamic();
-  localStorage.setItem('vt_data', JSON.stringify(siteData));
-  localStorage.setItem('vt_bio', siteData.bio);
-  const m=document.getElementById('bio-save-msg');
-  m.style.display='block';
-  setTimeout(()=>m.style.display='none',2000);
-  if(jsonbinKey) saveToCloud();
-}
+function saveBio(){siteData.bio=document.getElementById('admin-bio').value;renderDynamic();saveToCloud().then(ok=>{if(ok){const m=document.getElementById('bio-save-msg');m.style.display='block';setTimeout(()=>m.style.display='none',2000);}});}
 function addEvent(){const date=document.getElementById('ev-date').value.trim(),title=document.getElementById('ev-title').value.trim(),desc=document.getElementById('ev-desc').value.trim(),link=document.getElementById('ev-link').value.trim();if(!date||!title){alert('Date and title required.');return;}if(!siteData.dynEvents)siteData.dynEvents=[];siteData.dynEvents.unshift({date,title,desc,link});renderAdminEvents();saveToCloud();['ev-date','ev-title','ev-desc','ev-link'].forEach(id=>document.getElementById(id).value='');}
 function deleteEvent(i){if(!confirm('Delete?'))return;siteData.dynEvents.splice(i,1);renderAdminEvents();saveToCloud();}
 function addAlbum(){const title=document.getElementById('al-title').value.trim(),year=document.getElementById('al-year').value.trim(),meta=document.getElementById('al-meta').value.trim(),img=document.getElementById('al-img').value.trim(),link=document.getElementById('al-link').value.trim();if(!title){alert('Title required.');return;}if(!siteData.dynAlbums)siteData.dynAlbums=[];siteData.dynAlbums.unshift({title,year,meta,img,link});renderAdminAlbums();saveToCloud();['al-title','al-year','al-meta','al-img','al-link'].forEach(id=>document.getElementById(id).value='');}
 function deleteAlbum(i){if(!confirm('Delete?'))return;siteData.dynAlbums.splice(i,1);renderAdminAlbums();saveToCloud();}
-function renderAdminEvents(){
-  const el=document.getElementById('admin-events-list');
-  if(!el)return;
-  // Static events from HTML
-  const staticRows = Array.from(document.querySelectorAll('.event-row'));
-  const staticHtml = staticRows.map((row,i) => {
-    const date = row.querySelector('.event-date')?.textContent || '';
-    const title = row.querySelector('.event-title')?.textContent || '';
-    const desc = row.querySelector('.event-desc')?.textContent || '';
-    return `<div class="admin-list-item" style="border-left:3px solid #c8b88a;">
-      <div class="admin-list-item-info">
-        <div class="admin-list-item-title">${title}</div>
-        <div class="admin-list-item-meta">${date} · ${desc}</div>
-        <div style="font-size:0.68rem;color:#999;margin-top:0.2rem;">Static event (edit in code)</div>
-      </div>
-    </div>`;
-  }).join('');
-  // Dynamic events
-  const dynHtml = (siteData.dynEvents||[]).map((e,i)=>`
-    <div class="admin-list-item" style="border-left:3px solid #4caf50;">
-      <div class="admin-list-item-info">
-        <div class="admin-list-item-title">${e.title}</div>
-        <div class="admin-list-item-meta">${e.date}</div>
-        <div style="font-size:0.68rem;color:#4caf50;margin-top:0.2rem;">Dynamic event (added via admin)</div>
-      </div>
-      <button class="admin-delete-btn" onclick="deleteEvent(${i})">Delete</button>
-    </div>`).join('');
-  el.innerHTML = (dynHtml || '') + (staticHtml ? '<hr style="margin:1rem 0;border-color:#e8e2d6;"><p style="font-size:0.75rem;color:#999;margin-bottom:0.8rem;">Static events (hardcoded):</p>' + staticHtml : '');
-}
+function renderAdminEvents(){const el=document.getElementById('admin-events-list');if(!el)return;el.innerHTML=(siteData.dynEvents||[]).map((e,i)=>`<div class="admin-list-item"><div class="admin-list-item-info"><div class="admin-list-item-title">${e.title}</div><div class="admin-list-item-meta">${e.date}</div></div><button class="admin-delete-btn" onclick="deleteEvent(${i})">Delete</button></div>`).join('');}
 function renderAdminAlbums(){const el=document.getElementById('admin-albums-list');if(!el)return;el.innerHTML=(siteData.dynAlbums||[]).map((a,i)=>`<div class="admin-list-item"><div class="admin-list-item-info"><div class="admin-list-item-title">${a.title}</div><div class="admin-list-item-meta">${a.year}</div></div><button class="admin-delete-btn" onclick="deleteAlbum(${i})">Delete</button></div>`).join('');}
-function changePass(){
-  const np=document.getElementById('new-pass').value;
-  const cp=document.getElementById('confirm-pass').value;
-  if(!np){alert('پسورد را وارد کنید');return;}
-  if(np!==cp){alert('پسوردها یکسان نیستند');return;}
-  localStorage.setItem('vt_pass_plain',np);
-  adminPassword=np;
-  alert('✅ پسورد تغییر کرد! دفعه بعد با پسورد جدید وارد شوید.');
-  document.getElementById('new-pass').value='';
-  document.getElementById('confirm-pass').value='';
-}
-
-
-async function sha256(message) {
-  const msgBuffer = new TextEncoder().encode(message);
-  const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
-  const hashArray = Array.from(new Uint8Array(hashBuffer));
-  return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-}
-function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open');}
-function closeMenu(){document.getElementById('mobileMenu').classList.remove('open');}
+function changePass(){const np=document.getElementById('new-pass').value,cp=document.getElementById('confirm-pass').value;if(!np){alert('Enter a password.');return;}if(np!==cp){alert("Passwords don't match.");return;}adminPassword=np;localStorage.setItem('vt_pass',np);const m=document.getElementById('pass-save-msg');m.style.display='block';setTimeout(()=>m.style.display='none',2000);document.getElementById('new-pass').value='';document.getElementById('confirm-pass').value='';}
+function switchTab(name){document.querySelectorAll('.admin-tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.admin-section').forEach(s=>s.classList.remove('active'));document.querySelector(`[onclick="switchTab('${name}')"]`).classList.add('active');document.getElementById('tab-'+name).classList.add('active');if(name==='events')renderAdminEvents();if(name==='albums')renderAdminAlbums();}
 function openLogin(){document.getElementById('login-overlay').classList.add('open');setTimeout(()=>document.getElementById('login-pass').focus(),100);}
 function closeLogin(){document.getElementById('login-overlay').classList.remove('open');document.getElementById('login-err').style.display='none';document.getElementById('login-pass').value='';}
-function togglePassVis(){
-  const inp = document.getElementById('login-pass');
-  inp.type = inp.type === 'password' ? 'text' : 'password';
-}
 async function doLogin(){
   const p = document.getElementById('login-pass').value;
   const errEl = document.getElementById('login-err');
@@ -877,74 +813,51 @@ async function doLogin(){
     else{errEl.style.display='block';}
   }
 }
+function openAdmin(){document.getElementById('admin-bio').value=siteData.bio;if(jsonbinKey)document.getElementById('setup-notice').style.display='none';document.getElementById('admin-overlay').classList.add('open');}
+function closeAdmin(){document.getElementById('admin-overlay').classList.remove('open');}
+function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open');}
+function closeMenu(){document.getElementById('mobileMenu').classList.remove('open');}
+function handleSubmit(e){e.preventDefault();document.getElementById('form-msg').style.display='block';e.target.reset();}
+document.addEventListener('DOMContentLoaded',async()=>{
+if(window.location.search.includes('admin'))openLogin();
+  await loadFromCloud();
+  document.addEventListener('click',e=>{
+    const menu=document.getElementById('mobileMenu'),burger=document.querySelector('.nav-hamburger');
+    if(!menu.contains(e.target)&&!burger.contains(e.target))menu.classList.remove('open');
+    if(e.target===document.getElementById('admin-overlay'))closeAdmin();
+    if(e.target===document.getElementById('login-overlay'))closeLogin();
+  });
+});
 
-function triggerImageReplace(name) {
-  const instructions = document.getElementById('admin-img-instructions');
-  const nameEl = document.getElementById('admin-img-name');
-  const labels = {
-    'hero': 'hero.jpg (صفحه اول)',
-    'bio_1': 'bio_1.jpg (بیوگرافی ۱)',
-    'bio_2': 'bio_2.jpg (بیوگرافی ۲)',
-  };
-  nameEl.textContent = labels[name] || name + '.jpg';
-  instructions.style.display = 'block';
+async function sha256(message) {
+  const msgBuffer = new TextEncoder().encode(message);
+  const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+  const hashArray = Array.from(new Uint8Array(hashBuffer));
+  return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
 }
 
-function loadEventImages() {
-  const grid = document.getElementById('admin-event-images');
-  if (!grid) return;
-  const events = ['event_01','event_02','event_03','event_04','event_05','event_06',
-                  'event_07','event_08','event_09','event_10','event_11','event_12'];
-  grid.innerHTML = events.map((e,i) => `
-    <div class="admin-img-item" onclick="triggerImageReplaceName('${e}')">
-      <img src="images/${e}.jpg" alt="Event ${i+1}" onerror="this.style.background='#eee'">
-      <div class="admin-img-label">Event ${i+1}</div>
-      <div class="admin-img-btn">🔄 Replace</div>
-    </div>
-  `).join('');
+function togglePassVis(){
+  const inp = document.getElementById('login-pass');
+  inp.type = inp.type === 'password' ? 'text' : 'password';
 }
 
-function triggerImageReplaceName(name) {
-  const instructions = document.getElementById('admin-img-instructions');
-  const nameEl = document.getElementById('admin-img-name');
-  nameEl.textContent = name + '.jpg';
-  instructions.style.display = 'block';
+function changePass(){
+  const np=document.getElementById('new-pass').value;
+  const cp=document.getElementById('confirm-pass').value;
+  if(!np){alert('پسورد را وارد کنید');return;}
+  if(np!==cp){alert('پسوردها یکسان نیستند');return;}
+  localStorage.setItem('vt_pass_plain',np);
+  adminPassword=np;
+  alert('✅ پسورد تغییر کرد!');
+  document.getElementById('new-pass').value='';
+  document.getElementById('confirm-pass').value='';
 }
 
-function saveContact() {
-  const data = {
-    email: document.getElementById('admin-email').value,
-    instagram: document.getElementById('admin-instagram').value,
-    soundcloud: document.getElementById('admin-soundcloud').value,
-    youtube: document.getElementById('admin-youtube').value,
-    linkedin: document.getElementById('admin-linkedin').value,
-  };
-  localStorage.setItem('vt_contact', JSON.stringify(data));
-  document.getElementById('contact-save-msg').style.display = 'block';
-  setTimeout(() => document.getElementById('contact-save-msg').style.display = 'none', 2000);
-}
-
-function saveSettings() {
-  const data = {
-    title: document.getElementById('admin-site-title').value,
-    subtitle: document.getElementById('admin-subtitle').value,
-  };
-  localStorage.setItem('vt_settings', JSON.stringify(data));
-  if (data.subtitle) {
-    const eyebrow = document.querySelector('.hero-eyebrow');
-    if (eyebrow) eyebrow.textContent = data.subtitle;
-  }
-  document.getElementById('settings-save-msg').style.display = 'block';
-  setTimeout(() => document.getElementById('settings-save-msg').style.display = 'none', 2000);
-}
-
-function exportData() {
+function exportData(){
   const data = {
     bio: localStorage.getItem('vt_bio'),
     events: localStorage.getItem('vt_events'),
-    albums: localStorage.getItem('vt_albums'),
     contact: localStorage.getItem('vt_contact'),
-    settings: localStorage.getItem('vt_settings'),
   };
   const blob = new Blob([JSON.stringify(data, null, 2)], {type: 'application/json'});
   const a = document.createElement('a');
@@ -953,135 +866,90 @@ function exportData() {
   a.click();
 }
 
-function clearAllData() {
-  if (confirm('Are you sure? This will reset all dynamic content.')) {
-    ['vt_bio','vt_events','vt_albums','vt_contact','vt_settings'].forEach(k => localStorage.removeItem(k));
+function clearAllData(){
+  if(confirm('Are you sure? This will reset all dynamic content.')){
+    ['vt_bio','vt_events','vt_contact'].forEach(k => localStorage.removeItem(k));
     location.reload();
   }
 }
 
+function saveContact(){
+  const data = {
+    email: document.getElementById('admin-email').value,
+    instagram: document.getElementById('admin-instagram').value,
+    soundcloud: document.getElementById('admin-soundcloud').value,
+    youtube: document.getElementById('admin-youtube').value,
+    linkedin: document.getElementById('admin-linkedin').value,
+  };
+  localStorage.setItem('vt_contact', JSON.stringify(data));
+  const m = document.getElementById('contact-save-msg');
+  if(m){m.style.display='block';setTimeout(()=>m.style.display='none',2000);}
+}
+
+function saveSettings(){
+  const data = {
+    title: document.getElementById('admin-site-title').value,
+    subtitle: document.getElementById('admin-subtitle').value,
+  };
+  localStorage.setItem('vt_settings', JSON.stringify(data));
+  const m = document.getElementById('settings-save-msg');
+  if(m){m.style.display='block';setTimeout(()=>m.style.display='none',2000);}
+}
+
+function loadEventImagesAdmin(){
+  const grid = document.getElementById('admin-event-images');
+  const inputs = document.getElementById('upload-event-inputs');
+  if(!grid) return;
+  const events = [
+    {id:'event_01',label:'Event 1'},{id:'event_02',label:'Event 2'},
+    {id:'event_03',label:'Event 3'},{id:'event_04',label:'Event 4'},
+    {id:'event_05',label:'Event 5'},{id:'event_06',label:'Event 6'},
+    {id:'event_07',label:'Event 7'},{id:'event_08',label:'Event 8'},
+    {id:'event_09',label:'Event 9'},{id:'event_10',label:'Event 10'},
+    {id:'event_11',label:'Event 11'},{id:'event_12',label:'Event 12'},
+  ];
+  grid.innerHTML = events.map(e => '<div class="admin-img-item" onclick="document.getElementById(\'upload-'+e.id+'\').click()"><img src="images/'+e.id+'.jpg" id="preview-'+e.id+'" onerror="this.style.opacity=0.3"><div class="admin-img-label">'+e.label+'</div><div class="admin-img-btn">🔄</div></div>').join('');
+  if(inputs) inputs.innerHTML = events.map(e => '<input type="file" id="upload-'+e.id+'" accept="image/*" style="display:none" onchange="previewAndPrepare(this,\''+e.id+'\',\'preview-'+e.id+'\')">').join('');
+}
 
 let preparedImageData = null;
 let preparedImageName = null;
 
-function previewAndPrepare(input, name, previewId) {
+function previewAndPrepare(input, name, previewId){
   const file = input.files[0];
-  if (!file) return;
+  if(!file) return;
   const reader = new FileReader();
-  reader.onload = function(e) {
-    const prevEl = document.getElementById(previewId);
-    if (prevEl) prevEl.src = e.target.result;
+  reader.onload = function(e){
+    const prev = document.getElementById(previewId);
+    if(prev) prev.src = e.target.result;
     preparedImageData = e.target.result;
     preparedImageName = name + '.jpg';
     const status = document.getElementById('upload-status');
     const fname = document.getElementById('upload-filename');
-    if (status) status.style.display = 'block';
-    if (fname) fname.textContent = name + '.jpg';
+    if(status) status.style.display = 'block';
+    if(fname) fname.textContent = name + '.jpg';
   };
   reader.readAsDataURL(file);
 }
 
-function downloadPreparedImage() {
-  if (!preparedImageData) return;
+function downloadPreparedImage(){
+  if(!preparedImageData) return;
   const a = document.createElement('a');
   a.href = preparedImageData;
   a.download = preparedImageName;
   a.click();
 }
 
-function loadEventImagesAdmin() {
-  const grid = document.getElementById('admin-event-images');
-  const inputs = document.getElementById('upload-event-inputs');
-  if (!grid) return;
-  const events = [
-    {id:'event_01',label:'Event 1 - London Jazz'},
-    {id:'event_02',label:'Event 2'},
-    {id:'event_03',label:'Event 3 - Ghent'},
-    {id:'event_04',label:'Event 4 - Aga Khan'},
-    {id:'event_05',label:'Event 5 - Jakarta'},
-    {id:'event_06',label:'Event 6 - Tehran'},
-    {id:'event_07',label:'Event 7 - Rehearsal'},
-    {id:'event_08',label:'Event 8 - Bowing'},
-    {id:'event_09',label:'Event 9'},
-    {id:'event_10',label:'Event 10 - Solo'},
-    {id:'event_11',label:'Event 11'},
-    {id:'event_12',label:'Event 12'},
-  ];
-  grid.innerHTML = events.map(e => `
-    <div class="admin-img-item" onclick="document.getElementById('upload-${e.id}').click()">
-      <img src="images/${e.id}.jpg" alt="${e.label}" id="preview-${e.id}" onerror="this.style.opacity=0.3">
-      <div class="admin-img-label" style="font-size:0.65rem;">${e.label}</div>
-      <div class="admin-img-btn">🔄 Change</div>
-    </div>`).join('');
-  inputs.innerHTML = events.map(e => 
-    `<input type="file" id="upload-${e.id}" accept="image/*" style="display:none" onchange="previewAndPrepare(this,'${e.id}','preview-${e.id}')">`
-  ).join('');
-}
-
-function switchTab(name){
-  document.querySelectorAll('.admin-tab').forEach(t=>t.classList.remove('active'));
-  document.querySelectorAll('.admin-section').forEach(s=>s.classList.remove('active'));
-  const btn = document.querySelector(`.admin-tab[onclick*="switchTab('${name}')"]`);
-  if(btn) btn.classList.add('active');
-  const section = document.getElementById('tab-'+name);
-  if(section) section.classList.add('active');
-  if(name==='events') renderAdminEvents();
-  if(name==='albums') renderAdminAlbums();
-}
-
-function closeAdmin(){document.getElementById('admin-overlay').classList.remove('open');}
-function openAdmin(){
-  // Load bio
-  if(!siteData.bio){
-    const paras = document.querySelectorAll('#bio-text-content p');
-    siteData.bio = Array.from(paras).map(p=>p.innerText).join('\n\n');
-  }
-  document.getElementById('admin-bio').value = siteData.bio;
-
-  // Load contact fields from localStorage
-  const contact = JSON.parse(localStorage.getItem('vt_contact')||'{}');
-  if(contact.email) document.getElementById('admin-email').value = contact.email;
-  if(contact.instagram) document.getElementById('admin-instagram').value = contact.instagram;
-  if(contact.soundcloud) document.getElementById('admin-soundcloud').value = contact.soundcloud;
-  if(contact.youtube) document.getElementById('admin-youtube').value = contact.youtube;
-  if(contact.linkedin) document.getElementById('admin-linkedin').value = contact.linkedin;
-
-  // Load settings from localStorage
-  const settings = JSON.parse(localStorage.getItem('vt_settings')||'{}');
-  if(settings.title) document.getElementById('admin-site-title').value = settings.title;
-  if(settings.subtitle) document.getElementById('admin-subtitle').value = settings.subtitle;
-
-  if(jsonbinKey) document.getElementById('setup-notice').style.display='none';
-  document.getElementById('admin-overlay').classList.add('open');
-});
-
-// Init on page load
 document.addEventListener('DOMContentLoaded', async function(){
-  // Restore saved bio
   const savedBio = localStorage.getItem('vt_bio');
   if(savedBio) siteData.bio = savedBio;
   await loadFromCloud();
   renderDynamic();
-  // Open admin if ?admin in URL - delay to ensure DOM is ready
   if(window.location.search.includes('admin')){
-    setTimeout(openLogin, 300);
+    setTimeout(openLogin, 500);
   }
 });
 </script>
-
-<div id="lightbox">
-  <button id="lightbox-close" onclick="closeLightbox()" aria-label="Close">×</button>
-  <button id="lightbox-prev" onclick="lightboxNav(-1)" aria-label="Previous">‹</button>
-  <div id="lightbox-inner">
-    <img id="lightbox-img" src="" alt="">
-    <div style="display:flex;align-items:center;gap:1.5rem;">
-      <span id="lightbox-counter"></span>
-      <a id="lightbox-download" href="" download>↓ Download</a>
-    </div>
-  </div>
-  <button id="lightbox-next" onclick="lightboxNav(1)" aria-label="Next">›</button>
-</div>
-
 <script>
 (function(){
   // Bio images
