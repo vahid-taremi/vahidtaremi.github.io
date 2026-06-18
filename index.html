@@ -731,7 +731,11 @@ async function loadFromCloud(){
   if(r.ok){const j=await r.json();siteData=j.record;renderDynamic();}}catch(e){}
 }
 async function saveToCloud(){
-  if(!jsonbinKey){alert('Please enter your JSONBin API key first.');return false;}
+  if(!jsonbinKey){
+    // Save to localStorage only
+    localStorage.setItem('vt_data', JSON.stringify(siteData));
+    return Promise.resolve(true);
+  }
   try{
     if(!jsonbinId){const r=await fetch('https://api.jsonbin.io/v3/b',{method:'POST',headers:{'Content-Type':'application/json','X-Master-Key':jsonbinKey,'X-Bin-Name':'VahidTaremi'},body:JSON.stringify(siteData)});const j=await r.json();jsonbinId=j.metadata.id;localStorage.setItem('vt_jb_id',jsonbinId);}
     else{await fetch(`https://api.jsonbin.io/v3/b/${jsonbinId}`,{method:'PUT',headers:{'Content-Type':'application/json','X-Master-Key':jsonbinKey},body:JSON.stringify(siteData)});}
@@ -751,7 +755,15 @@ function renderDynamic(){
     dg.insertAdjacentHTML('afterbegin',siteData.dynAlbums.map(a=>`<div class="disc-card">${a.img?`<img class="pt disc-card-img" src="${a.img}" alt="${a.title}" loading="lazy">`:'<div style="background:#e8e2d6;aspect-ratio:1/1;"></div>'}<div class="disc-card-body"><div class="disc-card-title">${a.title}</div><div class="disc-card-meta">${a.meta}<br>${a.year}</div>${a.link?`<div class="disc-links"><a href="${a.link}" target="_blank" rel="noopener noreferrer" class="disc-link">Listen →</a></div>`:''}</div></div>`).join(''));
   }
 }
-function saveBio(){siteData.bio=document.getElementById('admin-bio').value;renderDynamic();saveToCloud().then(ok=>{if(ok){const m=document.getElementById('bio-save-msg');m.style.display='block';setTimeout(()=>m.style.display='none',2000);}});}
+function saveBio(){
+  siteData.bio=document.getElementById('admin-bio').value;
+  renderDynamic();
+  localStorage.setItem('vt_data', JSON.stringify(siteData));
+  const m=document.getElementById('bio-save-msg');
+  m.style.display='block';
+  setTimeout(()=>m.style.display='none',2000);
+  if(jsonbinKey) saveToCloud();
+}
 function addEvent(){const date=document.getElementById('ev-date').value.trim(),title=document.getElementById('ev-title').value.trim(),desc=document.getElementById('ev-desc').value.trim(),link=document.getElementById('ev-link').value.trim();if(!date||!title){alert('Date and title required.');return;}if(!siteData.dynEvents)siteData.dynEvents=[];siteData.dynEvents.unshift({date,title,desc,link});renderAdminEvents();saveToCloud();['ev-date','ev-title','ev-desc','ev-link'].forEach(id=>document.getElementById(id).value='');}
 function deleteEvent(i){if(!confirm('Delete?'))return;siteData.dynEvents.splice(i,1);renderAdminEvents();saveToCloud();}
 function addAlbum(){const title=document.getElementById('al-title').value.trim(),year=document.getElementById('al-year').value.trim(),meta=document.getElementById('al-meta').value.trim(),img=document.getElementById('al-img').value.trim(),link=document.getElementById('al-link').value.trim();if(!title){alert('Title required.');return;}if(!siteData.dynAlbums)siteData.dynAlbums=[];siteData.dynAlbums.unshift({title,year,meta,img,link});renderAdminAlbums();saveToCloud();['al-title','al-year','al-meta','al-img','al-link'].forEach(id=>document.getElementById(id).value='');}
