@@ -234,8 +234,8 @@ footer{background:var(--hero-bg);padding:2rem 2.5rem;display:flex;justify-conten
     <h2>Biography</h2>
     <div class="bio-grid">
       <div class="bio-portraits">
-        <img class="bio-portrait-img" src="images/bio_1.jpg" alt="Vahid Taremi" loading="lazy">
-        <img class="bio-portrait-img" src="images/bio_2.jpg" alt="Vahid Taremi" loading="lazy">
+        <img class="bio-portrait-img" src="images/bio_1.jpg" style="cursor:pointer;" alt="Vahid Taremi" loading="lazy">
+        <img class="bio-portrait-img" src="images/bio_2.jpg" style="cursor:pointer;" alt="Vahid Taremi" loading="lazy">
       </div>
       <div class="bio-text" id="bio-text-content">
         
@@ -693,12 +693,24 @@ if(window.location.search.includes('admin'))openLogin();
 
 <script>
 (function(){
+  // Bio images
+  const bioImgs = document.querySelectorAll('.bio-portrait-img');
+  const bioSrcs = Array.from(bioImgs).map(i=>i.src);
+  
+  // Event images
   const items = document.querySelectorAll('.concert-strip-item img');
-  const srcs = Array.from(items).map(i=>i.src);
+  const eventSrcs = Array.from(items).map(i=>i.src);
+  
+  // Combined
+  const srcs = [...bioSrcs, ...eventSrcs];
   let current = 0;
   
   items.forEach((img, idx) => {
-    img.parentElement.addEventListener('click', () => openLightbox(idx));
+    img.parentElement.addEventListener('click', () => openLightbox(bioSrcs.length + idx));
+  });
+  
+  bioImgs.forEach((img, idx) => {
+    img.addEventListener('click', () => openLightbox(idx));
   });
   
   window.openLightbox = function(idx){
