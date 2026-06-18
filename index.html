@@ -795,6 +795,7 @@ function saveBio(){
   siteData.bio=document.getElementById('admin-bio').value;
   renderDynamic();
   localStorage.setItem('vt_data', JSON.stringify(siteData));
+  localStorage.setItem('vt_bio', siteData.bio);
   const m=document.getElementById('bio-save-msg');
   m.style.display='block';
   setTimeout(()=>m.style.display='none',2000);
@@ -1017,27 +1018,28 @@ function switchTab(name){
 }
 
 function openAdmin(){
-  // Load bio from HTML if siteData.bio is empty
+  // Load bio
   if(!siteData.bio){
     const paras = document.querySelectorAll('#bio-text-content p');
     siteData.bio = Array.from(paras).map(p=>p.innerText).join('\n\n');
   }
-  document.getElementById('admin-bio').value=siteData.bio;if(jsonbinKey)document.getElementById('setup-notice').style.display='none';document.getElementById('admin-overlay').classList.add('open');}
-function closeAdmin(){document.getElementById('admin-overlay').classList.remove('open');}
-function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open');}
-function closeMenu(){document.getElementById('mobileMenu').classList.remove('open');}
-function handleSubmit(e){e.preventDefault();document.getElementById('form-msg').style.display='block';e.target.reset();}
-document.addEventListener('DOMContentLoaded',async()=>{
-  localStorage.removeItem('vt_pass');
-  localStorage.removeItem('vt_pass_plain');
-if(window.location.search.includes('admin'))openLogin();
-  await loadFromCloud();
-  document.addEventListener('click',e=>{
-    const menu=document.getElementById('mobileMenu'),burger=document.querySelector('.nav-hamburger');
-    if(!menu.contains(e.target)&&!burger.contains(e.target))menu.classList.remove('open');
-    if(e.target===document.getElementById('admin-overlay'))closeAdmin();
-    if(e.target===document.getElementById('login-overlay'))closeLogin();
-  });
+  document.getElementById('admin-bio').value = siteData.bio;
+
+  // Load contact fields from localStorage
+  const contact = JSON.parse(localStorage.getItem('vt_contact')||'{}');
+  if(contact.email) document.getElementById('admin-email').value = contact.email;
+  if(contact.instagram) document.getElementById('admin-instagram').value = contact.instagram;
+  if(contact.soundcloud) document.getElementById('admin-soundcloud').value = contact.soundcloud;
+  if(contact.youtube) document.getElementById('admin-youtube').value = contact.youtube;
+  if(contact.linkedin) document.getElementById('admin-linkedin').value = contact.linkedin;
+
+  // Load settings from localStorage
+  const settings = JSON.parse(localStorage.getItem('vt_settings')||'{}');
+  if(settings.title) document.getElementById('admin-site-title').value = settings.title;
+  if(settings.subtitle) document.getElementById('admin-subtitle').value = settings.subtitle;
+
+  if(jsonbinKey) document.getElementById('setup-notice').style.display='none';
+  document.getElementById('admin-overlay').classList.add('open');
 });
 </script>
 
