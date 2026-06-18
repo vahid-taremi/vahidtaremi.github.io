@@ -572,7 +572,10 @@ section{padding:4rem 1.2rem;}
     <h3>Admin Login</h3>
     <div class="login-field">
       <label for="login-pass">Password</label>
-      <input type="password" id="login-pass" placeholder="Enter password" onkeydown="if(event.key==='Enter')doLogin()">
+      <div style="position:relative;">
+      <input type="password" id="login-pass" style="padding-right:2.5rem;width:100%;" placeholder="Enter password" onkeydown="if(event.key==='Enter')doLogin()">
+      <button type="button" onclick="togglePassVis()" style="position:absolute;right:0.6rem;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:#999;font-size:1rem;">👁</button>
+    </div>
     </div>
     <p class="login-err" id="login-err">Incorrect password.</p>
     <div class="login-actions">
@@ -842,20 +845,20 @@ function changePass(){
 
 function openLogin(){document.getElementById('login-overlay').classList.add('open');setTimeout(()=>document.getElementById('login-pass').focus(),100);}
 function closeLogin(){document.getElementById('login-overlay').classList.remove('open');document.getElementById('login-err').style.display='none';document.getElementById('login-pass').value='';}
+function togglePassVis(){
+  const inp = document.getElementById('login-pass');
+  inp.type = inp.type === 'password' ? 'text' : 'password';
+}
 async function doLogin(){
   const p = document.getElementById('login-pass').value;
-  const plain = localStorage.getItem('vt_pass_plain');
-  // Check plain password first (if user changed it)
-  if(plain && p===plain){closeLogin();openAdmin();return;}
-  // Check hashed password
+  const errEl = document.getElementById('login-err');
   try{
     const h = await sha256(p);
-    const stored = localStorage.getItem('vt_pass') || '707c4e1d92beaf0f0ccfad6c4672254ecd82dfa8d62f423ad5ac4d3ec91e1c9c';
-    if(h===stored){closeLogin();openAdmin();}
-    else{document.getElementById('login-err').style.display='block';}
+    if(h==='707c4e1d92beaf0f0ccfad6c4672254ecd82dfa8d62f423ad5ac4d3ec91e1c9c'){closeLogin();openAdmin();}
+    else{errEl.style.display='block';}
   } catch(e) {
     if(p==='Taraneh7760@'){closeLogin();openAdmin();}
-    else{document.getElementById('login-err').style.display='block';}
+    else{errEl.style.display='block';}
   }
 }
 
@@ -1022,6 +1025,8 @@ function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('op
 function closeMenu(){document.getElementById('mobileMenu').classList.remove('open');}
 function handleSubmit(e){e.preventDefault();document.getElementById('form-msg').style.display='block';e.target.reset();}
 document.addEventListener('DOMContentLoaded',async()=>{
+  localStorage.removeItem('vt_pass');
+  localStorage.removeItem('vt_pass_plain');
 if(window.location.search.includes('admin'))openLogin();
   await loadFromCloud();
   document.addEventListener('click',e=>{
