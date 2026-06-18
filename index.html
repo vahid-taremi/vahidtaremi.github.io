@@ -843,9 +843,16 @@ function openLogin(){document.getElementById('login-overlay').classList.add('ope
 function closeLogin(){document.getElementById('login-overlay').classList.remove('open');document.getElementById('login-err').style.display='none';document.getElementById('login-pass').value='';}
 async function doLogin(){
   const p = document.getElementById('login-pass').value;
-  const hashed = await sha256(p);
-  if(hashed===adminPassword){closeLogin();openAdmin();}
-  else{document.getElementById('login-err').style.display='block';}
+  try{
+    const hashed = await sha256(p);
+    const stored = localStorage.getItem('vt_pass') || '5245eea8856bbee360806389474ddf43e1ae94ec0742f2561ed72e46f7d2f96d';
+    if(hashed===stored){closeLogin();openAdmin();}
+    else{document.getElementById('login-err').style.display='block';}
+  } catch(e) {
+    // Fallback for browsers without crypto.subtle
+    if(p===localStorage.getItem('vt_pass_plain') || p==='vahid2025'){closeLogin();openAdmin();}
+    else{document.getElementById('login-err').style.display='block';}
+  }
 }
 
 function triggerImageReplace(name) {
