@@ -155,7 +155,10 @@ footer{background:var(--hero-bg);padding:2rem 2.5rem;display:flex;justify-conten
 .login-err{font-size:0.78rem;color:#c0392b;margin-top:0.5rem;display:none;}
 .login-actions{display:flex;gap:0.8rem;margin-top:1.4rem;align-items:center;}
 .login-cancel{background:none;border:none;font-size:0.75rem;color:var(--muted);cursor:pointer;text-decoration:underline;}
-@media(max-width:768px){nav{padding:0 1.2rem;}.nav-links,.nav-social{display:none;}.nav-hamburger{display:flex;}section{padding:4rem 1.2rem;}#home{padding:0 1.2rem 4rem;}.bio-grid,.contact-grid{grid-template-columns:1fr;gap:2rem;}.bio-portrait{max-width:300px;}.bio-portraits{position:static;display:flex;flex-direction:row;gap:0.8rem;overflow-x:auto;}.bio-portrait-img{width:calc(50% - 0.4rem);flex-shrink:0;max-height:280px;object-fit:cover;object-position:top;}.projects-cols{grid-template-columns:1fr;gap:2rem;}.event-row{grid-template-columns:1fr;gap:0.4rem;padding:1.2rem 0;}.hero-socials{display:none;}.concert-strip{grid-template-columns:1fr 1fr;}.admin-row{grid-template-columns:1fr;}}
+@media(max-width:768px){nav{padding:0 1.2rem;}.bio-grid{position:static !important;display:block;}.bio-portraits{position:static !important;}.nav-links,.nav-social{display:none;}.nav-hamburger{display:flex;}section{padding:4rem 1.2rem;}#home{padding:0 1.2rem 4rem;}.bio-grid,.contact-grid{grid-template-columns:1fr;gap:2rem;}
+.bio-portraits{position:static !important;display:flex;flex-direction:row;gap:0.6rem;margin-bottom:1.5rem;}
+.bio-portrait-img{width:calc(50% - 0.3rem);height:200px;object-fit:cover;object-position:top;display:block;}
+.bio-text{position:static !important;z-index:auto !important;}.projects-cols{grid-template-columns:1fr;gap:2rem;}.event-row{grid-template-columns:1fr;gap:0.4rem;padding:1.2rem 0;}.hero-socials{display:none;}.concert-strip{grid-template-columns:1fr 1fr;}.admin-row{grid-template-columns:1fr;}}
 @media(max-width:480px){.disc-grid{grid-template-columns:1fr 1fr;gap:1rem;}.concert-strip{grid-template-columns:1fr 1fr;}}
 .social-icon-btn{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border:1px solid var(--accent);color:var(--accent);text-decoration:none;transition:background 0.2s,color 0.2s;margin-right:0.4rem;}
 .social-icon-btn:hover{background:var(--accent);color:var(--ivory);}
