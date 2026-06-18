@@ -71,10 +71,10 @@ h2{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,3rem);font-we
 .bio-text p{font-size:0.93rem;color:#3a3530;margin-bottom:1.2rem;line-height:1.85;text-align:justify;}
 #discography{background:#f1ece3;}
 .disc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:2rem;}
-.disc-card{background:var(--ivory);border:1px solid var(--divider);overflow:hidden;transition:transform 0.25s,box-shadow 0.25s;display:flex;flex-direction:column;}
+.disc-card{background:var(--ivory);border:1px solid var(--divider);overflow:hidden;transition:transform 0.25s,box-shadow 0.25s;}
 .disc-card:hover{transform:translateY(-4px);box-shadow:0 12px 36px rgba(0,0,0,0.1);}
 .disc-card-img{width:100%;aspect-ratio:1/1;object-fit:cover;display:block;}
-.disc-card-body{padding:1.1rem 1.3rem 1.5rem;display:flex;flex-direction:column;flex:1;}
+.disc-card-body{padding:1.1rem 1.3rem 3.8rem 1.3rem;position:relative;}
 .disc-card-title{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:400;margin-bottom:0.35rem;color:var(--ink);}
 .disc-card-meta{font-size:0.72rem;color:var(--muted);line-height:1.6;margin-bottom:0.8rem;}
 .disc-links{display:flex;gap:0.8rem;flex-wrap:wrap;}
@@ -216,7 +216,7 @@ footer{background:var(--hero-bg);padding:2rem 2.5rem;display:flex;justify-conten
 .admin-img-label{font-size:0.72rem;padding:0.4rem 0.5rem;color:#666;background:#faf7f2;}
 .admin-img-btn{font-size:0.68rem;padding:0.3rem 0.5rem;background:var(--accent);color:var(--ivory);text-align:center;}
 
-.disc-link-wrap{margin-top:auto;padding-top:1rem;display:flex;justify-content:flex-end;}
+.disc-link-wrap{position:absolute;bottom:1.2rem;right:1.3rem;}
 </style>
 </head>
 <body>
