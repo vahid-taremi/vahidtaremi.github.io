@@ -1049,8 +1049,10 @@ document.addEventListener('DOMContentLoaded', async function(){
   if(savedBio) siteData.bio = savedBio;
   await loadFromCloud();
   renderDynamic();
-  // Open admin if ?admin in URL
-  if(window.location.search.includes('admin')) openLogin();
+  // Open admin if ?admin in URL - delay to ensure DOM is ready
+  if(window.location.search.includes('admin')){
+    setTimeout(openLogin, 300);
+  }
 });
 </script>
 
