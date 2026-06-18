@@ -67,8 +67,8 @@ h2{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,3rem);font-we
 #biography{background:var(--ivory);}
 .bio-grid{display:grid;grid-template-columns:1fr 1.65fr;gap:5rem;align-items:start;}
 .bio-portrait img{width:100%;aspect-ratio:2/3;object-fit:cover;object-position:top center;display:block;}
-.bio-text p{font-size:0.93rem;color:#3a3530;margin-bottom:1.2rem;line-height:1.85;}
-.bio-text p{font-size:0.93rem;color:#3a3530;margin-bottom:1.2rem;line-height:1.85;}
+.bio-text p{font-size:0.93rem;color:#3a3530;margin-bottom:1.2rem;line-height:1.85;text-align:justify;}
+.bio-text p{font-size:0.93rem;color:#3a3530;margin-bottom:1.2rem;line-height:1.85;text-align:justify;}
 #discography{background:#f1ece3;}
 .disc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:2rem;}
 .disc-card{background:var(--ivory);border:1px solid var(--divider);overflow:hidden;transition:transform 0.25s,box-shadow 0.25s;}
@@ -160,12 +160,12 @@ footer{background:var(--hero-bg);padding:2rem 2.5rem;display:flex;justify-conten
 .login-actions{display:flex;gap:0.8rem;margin-top:1.4rem;align-items:center;}
 .login-cancel{background:none;border:none;font-size:0.75rem;color:var(--muted);cursor:pointer;text-decoration:underline;}
 @media(max-width:768px){nav{padding:0 1.2rem;}.bio-grid{position:static !important;display:block;}.bio-portraits{position:static !important;}.nav-links,.nav-social{display:none;}.nav-hamburger{display:flex;}section{padding:4rem 1.2rem;}#home{padding:0 1.2rem 4rem;}.bio-grid,.contact-grid{grid-template-columns:1fr;gap:2rem;}
-.bio-grid{position:relative !important;overflow:hidden;}
-.bio-portraits{position:absolute !important;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;}
-.bio-portrait-img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block;opacity:0.15;filter:grayscale(10%);}
+.bio-grid{position:relative !important;overflow:hidden;background:#f1ece3;}
+.bio-portraits{position:absolute !important;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;margin:0;padding:0;}
+.bio-portrait-img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block;opacity:0.2;filter:grayscale(10%);}
 .bio-portrait-img:nth-child(2){display:none;}
-.bio-text{position:relative !important;z-index:1 !important;padding:1.5rem 1.2rem 2rem !important;}
-.bio-grid::before{content:'';display:block;padding-top:0;}.projects-cols{grid-template-columns:1fr;gap:2rem;}.event-row{grid-template-columns:1fr;gap:0.4rem;padding:1.2rem 0;}.hero-socials{display:none;}.concert-strip{grid-template-columns:1fr 1fr;}.admin-row{grid-template-columns:1fr;}}
+.bio-text{position:relative !important;z-index:1 !important;padding:1.5rem 1.2rem 2rem !important;margin:0;}
+#biography .section-inner{padding-top:0 !important;}.projects-cols{grid-template-columns:1fr;gap:2rem;}.event-row{grid-template-columns:1fr;gap:0.4rem;padding:1.2rem 0;}.hero-socials{display:none;}.concert-strip{grid-template-columns:1fr 1fr;}.admin-row{grid-template-columns:1fr;}}
 @media(max-width:480px){.disc-grid{grid-template-columns:1fr 1fr;gap:1rem;}.concert-strip{grid-template-columns:1fr 1fr;}}
 .social-icon-btn{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border:1px solid var(--accent);color:var(--accent);text-decoration:none;transition:background 0.2s,color 0.2s;margin-right:0.4rem;}
 .social-icon-btn:hover{background:var(--accent);color:var(--ivory);}
@@ -701,6 +701,14 @@ footer{background:var(--hero-bg);padding:2rem 2.5rem;display:flex;justify-conten
         <button class="admin-btn" onclick="saveSettings()">💾 Save Settings</button>
         <p class="admin-save-msg" id="settings-save-msg">✓ Saved!</p>
         <hr class="admin-divider">
+        <h4 class="admin-section-title">Change Password</h4>
+        <div class="admin-row">
+          <div class="admin-field"><label>New Password</label><input type="password" id="new-pass" placeholder="New password"></div>
+          <div class="admin-field"><label>Confirm Password</label><input type="password" id="confirm-pass" placeholder="Confirm password"></div>
+        </div>
+        <button class="admin-btn" onclick="changePass()">🔑 Change Password</button>
+        <p class="admin-save-msg" id="pass-msg">✓ Password changed!</p>
+        <hr class="admin-divider">
         <h4 class="admin-section-title">Export / Backup</h4>
         <p style="font-size:0.82rem;color:#666;margin-bottom:1rem;">تمام تغییرات پویا را دانلود کنید.</p>
         <button class="admin-btn" onclick="exportData()">📥 Export Data (JSON)</button>
@@ -944,7 +952,13 @@ function loadEventImagesAdmin() {
   ).join('');
 }
 
-function openAdmin(){document.getElementById('admin-bio').value=siteData.bio;if(jsonbinKey)document.getElementById('setup-notice').style.display='none';document.getElementById('admin-overlay').classList.add('open');}
+function openAdmin(){
+  // Load bio from HTML if siteData.bio is empty
+  if(!siteData.bio){
+    const paras = document.querySelectorAll('#bio-text-content p');
+    siteData.bio = Array.from(paras).map(p=>p.innerText).join('\n\n');
+  }
+  document.getElementById('admin-bio').value=siteData.bio;if(jsonbinKey)document.getElementById('setup-notice').style.display='none';document.getElementById('admin-overlay').classList.add('open');}
 function closeAdmin(){document.getElementById('admin-overlay').classList.remove('open');}
 function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open');}
 function closeMenu(){document.getElementById('mobileMenu').classList.remove('open');}
