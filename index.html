@@ -847,6 +847,8 @@ function changePass(){
   document.getElementById('confirm-pass').value='';
 }
 
+function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open');}
+function closeMenu(){document.getElementById('mobileMenu').classList.remove('open');}
 function openLogin(){document.getElementById('login-overlay').classList.add('open');setTimeout(()=>document.getElementById('login-pass').focus(),100);}
 function closeLogin(){document.getElementById('login-overlay').classList.remove('open');document.getElementById('login-err').style.display='none';document.getElementById('login-pass').value='';}
 function togglePassVis(){
