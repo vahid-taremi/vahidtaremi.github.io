@@ -752,7 +752,7 @@ As a composer, Taremi has contributed to music albums such as Little Black Fish 
 
 He has served as a music critic and analyst on Iranian television and radio programs, and has composed scores for films, documentaries, and theatrical productions.`;
 let siteData={bio:BIO_DEFAULT,dynEvents:[],dynAlbums:[]};
-let adminPassword=localStorage.getItem('vt_pass')||'5245eea8856bbee360806389474ddf43e1ae94ec0742f2561ed72e46f7d2f96d';
+let adminPassword=localStorage.getItem('vt_pass')||'707c4e1d92beaf0f0ccfad6c4672254ecd82dfa8d62f423ad5ac4d3ec91e1c9c';
 let jsonbinKey=localStorage.getItem('vt_jb_key')||'';
 let jsonbinId=localStorage.getItem('vt_jb_id')||'';
 async function loadFromCloud(){
@@ -850,11 +850,11 @@ async function doLogin(){
   // Check hashed password
   try{
     const h = await sha256(p);
-    const stored = localStorage.getItem('vt_pass') || '5245eea8856bbee360806389474ddf43e1ae94ec0742f2561ed72e46f7d2f96d';
+    const stored = localStorage.getItem('vt_pass') || '707c4e1d92beaf0f0ccfad6c4672254ecd82dfa8d62f423ad5ac4d3ec91e1c9c';
     if(h===stored){closeLogin();openAdmin();}
     else{document.getElementById('login-err').style.display='block';}
   } catch(e) {
-    if(p==='vahid2025'){closeLogin();openAdmin();}
+    if(p==='Taraneh7760@'){closeLogin();openAdmin();}
     else{document.getElementById('login-err').style.display='block';}
   }
 }
