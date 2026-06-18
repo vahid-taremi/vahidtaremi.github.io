@@ -75,7 +75,7 @@ h2{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,3rem);font-we
 .disc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:2rem;}
 .disc-card{background:var(--ivory);border:1px solid var(--divider);overflow:hidden;transition:transform 0.25s,box-shadow 0.25s;display:flex;flex-direction:column;}
 .disc-card:hover{transform:translateY(-4px);box-shadow:0 12px 36px rgba(0,0,0,0.1);}
-.disc-card-img{width:100%;height:220px;object-fit:cover;display:block;}
+.disc-card-img{width:100%;height:300px;object-fit:cover;display:block;}
 .disc-card-body{padding:1.1rem 1.3rem 3.8rem 1.3rem;position:relative;flex:1;}
 .disc-card-title{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:400;margin-bottom:0.35rem;color:var(--ink);}
 .disc-card-meta{font-size:0.72rem;color:var(--muted);line-height:1.6;margin-bottom:0.8rem;}
@@ -1041,6 +1041,17 @@ function openAdmin(){
   if(jsonbinKey) document.getElementById('setup-notice').style.display='none';
   document.getElementById('admin-overlay').classList.add('open');
 });
+
+// Init on page load
+(async function(){
+  // Restore saved bio
+  const savedBio = localStorage.getItem('vt_bio');
+  if(savedBio) siteData.bio = savedBio;
+  await loadFromCloud();
+  renderDynamic();
+  // Open admin if ?admin in URL
+  if(window.location.search.includes('admin')) openLogin();
+})();
 </script>
 
 <div id="lightbox">
