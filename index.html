@@ -1043,7 +1043,7 @@ function openAdmin(){
 });
 
 // Init on page load
-(async function(){
+document.addEventListener('DOMContentLoaded', async function(){
   // Restore saved bio
   const savedBio = localStorage.getItem('vt_bio');
   if(savedBio) siteData.bio = savedBio;
@@ -1051,7 +1051,7 @@ function openAdmin(){
   renderDynamic();
   // Open admin if ?admin in URL
   if(window.location.search.includes('admin')) openLogin();
-})();
+});
 </script>
 
 <div id="lightbox">
