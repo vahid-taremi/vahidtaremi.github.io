@@ -828,29 +828,33 @@ function renderAdminEvents(){
   el.innerHTML = (dynHtml || '') + (staticHtml ? '<hr style="margin:1rem 0;border-color:#e8e2d6;"><p style="font-size:0.75rem;color:#999;margin-bottom:0.8rem;">Static events (hardcoded):</p>' + staticHtml : '');
 }
 function renderAdminAlbums(){const el=document.getElementById('admin-albums-list');if(!el)return;el.innerHTML=(siteData.dynAlbums||[]).map((a,i)=>`<div class="admin-list-item"><div class="admin-list-item-info"><div class="admin-list-item-title">${a.title}</div><div class="admin-list-item-meta">${a.year}</div></div><button class="admin-delete-btn" onclick="deleteAlbum(${i})">Delete</button></div>`).join('');}
-async function changePass(){
-  const np=document.getElementById('new-pass').value,cp=document.getElementById('confirm-pass').value;
-  if(!np){alert('Enter a password.');return;}
-  if(np!==cp){alert("Passwords don't match.");return;}
-  const h=await sha256(np);
-  adminPassword=h;
-  localStorage.setItem('vt_pass',h);
-  const m=document.getElementById('pass-msg');
-  if(m){m.style.display='block';setTimeout(()=>m.style.display='none',2000);}
+function changePass(){
+  const np=document.getElementById('new-pass').value;
+  const cp=document.getElementById('confirm-pass').value;
+  if(!np){alert('پسورد را وارد کنید');return;}
+  if(np!==cp){alert('پسوردها یکسان نیستند');return;}
+  localStorage.setItem('vt_pass_plain',np);
+  adminPassword=np;
+  alert('✅ پسورد تغییر کرد! دفعه بعد با پسورد جدید وارد شوید.');
+  document.getElementById('new-pass').value='';
+  document.getElementById('confirm-pass').value='';
 }
 
 function openLogin(){document.getElementById('login-overlay').classList.add('open');setTimeout(()=>document.getElementById('login-pass').focus(),100);}
 function closeLogin(){document.getElementById('login-overlay').classList.remove('open');document.getElementById('login-err').style.display='none';document.getElementById('login-pass').value='';}
 async function doLogin(){
   const p = document.getElementById('login-pass').value;
+  const plain = localStorage.getItem('vt_pass_plain');
+  // Check plain password first (if user changed it)
+  if(plain && p===plain){closeLogin();openAdmin();return;}
+  // Check hashed password
   try{
-    const hashed = await sha256(p);
+    const h = await sha256(p);
     const stored = localStorage.getItem('vt_pass') || '5245eea8856bbee360806389474ddf43e1ae94ec0742f2561ed72e46f7d2f96d';
-    if(hashed===stored){closeLogin();openAdmin();}
+    if(h===stored){closeLogin();openAdmin();}
     else{document.getElementById('login-err').style.display='block';}
   } catch(e) {
-    // Fallback for browsers without crypto.subtle
-    if(p===localStorage.getItem('vt_pass_plain') || p==='vahid2025'){closeLogin();openAdmin();}
+    if(p==='vahid2025'){closeLogin();openAdmin();}
     else{document.getElementById('login-err').style.display='block';}
   }
 }
