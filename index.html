@@ -162,9 +162,10 @@ footer{background:var(--hero-bg);padding:2rem 2.5rem;display:flex;justify-conten
 @media(max-width:768px){nav{padding:0 1.2rem;}.bio-grid{position:static !important;display:block;}.bio-portraits{position:static !important;}.nav-links,.nav-social{display:none;}.nav-hamburger{display:flex;}section{padding:4rem 1.2rem;}#home{padding:0 1.2rem 4rem;}.bio-grid,.contact-grid{grid-template-columns:1fr;gap:2rem;}
 .bio-grid{position:relative !important;overflow:hidden;}
 .bio-portraits{position:absolute !important;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;}
-.bio-portrait-img{width:100%;height:100%;object-fit:cover;object-position:center 25%;display:block;opacity:0.12;filter:grayscale(20%);}
+.bio-portrait-img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block;opacity:0.15;filter:grayscale(10%);}
 .bio-portrait-img:nth-child(2){display:none;}
-.bio-text{position:relative !important;z-index:1 !important;padding:2rem 1.2rem !important;}.projects-cols{grid-template-columns:1fr;gap:2rem;}.event-row{grid-template-columns:1fr;gap:0.4rem;padding:1.2rem 0;}.hero-socials{display:none;}.concert-strip{grid-template-columns:1fr 1fr;}.admin-row{grid-template-columns:1fr;}}
+.bio-text{position:relative !important;z-index:1 !important;padding:1.5rem 1.2rem 2rem !important;}
+.bio-grid::before{content:'';display:block;padding-top:0;}.projects-cols{grid-template-columns:1fr;gap:2rem;}.event-row{grid-template-columns:1fr;gap:0.4rem;padding:1.2rem 0;}.hero-socials{display:none;}.concert-strip{grid-template-columns:1fr 1fr;}.admin-row{grid-template-columns:1fr;}}
 @media(max-width:480px){.disc-grid{grid-template-columns:1fr 1fr;gap:1rem;}.concert-strip{grid-template-columns:1fr 1fr;}}
 .social-icon-btn{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border:1px solid var(--accent);color:var(--accent);text-decoration:none;transition:background 0.2s,color 0.2s;margin-right:0.4rem;}
 .social-icon-btn:hover{background:var(--accent);color:var(--ivory);}
@@ -622,47 +623,62 @@ footer{background:var(--hero-bg);padding:2rem 2.5rem;display:flex;justify-conten
       <!-- IMAGES -->
       <div class="admin-section" id="tab-images">
         <h4 class="admin-section-title">Manage Images</h4>
-        <p style="font-size:0.82rem;color:#888;margin-bottom:1.5rem;">روی هر عکس کلیک کنید تا عکس جدید از دستگاه انتخاب کنید. بعد از انتخاب، فایل را در GitHub آپلود کنید.</p>
         
-        <h4 class="admin-section-title" style="font-size:0.9rem;">Main Images</h4>
+        <div style="background:#fff8e1;border:1px solid #ffc107;padding:1rem;margin-bottom:1.5rem;font-size:0.82rem;line-height:1.8;border-radius:4px;">
+          <strong>📋 راهنما:</strong><br>
+          1. روی هر عکس کلیک کنید و عکس جدید انتخاب کنید<br>
+          2. پیش‌نمایش فوری میبینید<br>
+          3. دکمه <strong>💾 ذخیره در GitHub</strong> را بزنید<br>
+          4. فایل دانلود میشه → در GitHub فولدر <code>images/</code> رو باز کنید<br>
+          5. روی فایل مربوطه کلیک کنید → آیکون مداد → Upload → Commit
+        </div>
+
+        <h4 class="admin-section-title" style="font-size:0.9rem;">🖼 Main Images</h4>
         <div class="admin-image-grid">
           <div class="admin-img-item" onclick="document.getElementById('upload-hero').click()">
             <img src="images/hero.jpg" alt="Hero" id="preview-hero">
-            <div class="admin-img-label">Hero Background</div>
-            <div class="admin-img-btn">🔄 Change</div>
+            <div class="admin-img-label">Hero (صفحه اول)</div>
+            <div class="admin-img-btn">🔄 تغییر</div>
           </div>
           <div class="admin-img-item" onclick="document.getElementById('upload-bio1').click()">
             <img src="images/bio_1.jpg" alt="Bio 1" id="preview-bio1">
-            <div class="admin-img-label">Biography 1</div>
-            <div class="admin-img-btn">🔄 Change</div>
+            <div class="admin-img-label">Biography عکس ۱</div>
+            <div class="admin-img-btn">🔄 تغییر</div>
           </div>
           <div class="admin-img-item" onclick="document.getElementById('upload-bio2').click()">
             <img src="images/bio_2.jpg" alt="Bio 2" id="preview-bio2">
-            <div class="admin-img-label">Biography 2</div>
-            <div class="admin-img-btn">🔄 Change</div>
+            <div class="admin-img-label">Biography عکس ۲</div>
+            <div class="admin-img-btn">🔄 تغییر</div>
           </div>
         </div>
-        
-        <!-- Hidden file inputs -->
         <input type="file" id="upload-hero" accept="image/*" style="display:none" onchange="previewAndPrepare(this,'hero','preview-hero')">
         <input type="file" id="upload-bio1" accept="image/*" style="display:none" onchange="previewAndPrepare(this,'bio_1','preview-bio1')">
         <input type="file" id="upload-bio2" accept="image/*" style="display:none" onchange="previewAndPrepare(this,'bio_2','preview-bio2')">
-        
-        <div id="upload-instructions" style="display:none;background:#f0f7f0;border:1px solid #4caf50;padding:1rem;margin-top:1rem;font-size:0.82rem;line-height:1.9;border-radius:4px;">
-          <strong>✅ عکس انتخاب شد!</strong><br>
-          برای اعمال دائمی:<br>
-          1. دکمه <strong>Download File</strong> را بزنید<br>
-          2. وارد <strong>GitHub</strong> شوید<br>
-          3. فولدر <strong>images/</strong> را باز کنید<br>
-          4. فایل مربوطه را انتخاب کنید → <strong>...</strong> → <strong>Replace file</strong><br>
-          5. فایل دانلود شده را آپلود کنید → <strong>Commit changes</strong><br>
-          <button class="admin-btn" id="download-img-btn" style="margin-top:0.8rem;" onclick="downloadPreparedImage()">📥 Download File</button>
+
+        <div id="upload-status" style="display:none;background:#e8f5e9;border:1px solid #4caf50;padding:1rem;margin-top:1rem;border-radius:4px;">
+          <div style="font-size:0.85rem;margin-bottom:0.8rem;">
+            ✅ عکس انتخاب شد: <strong id="upload-filename"></strong>
+          </div>
+          <button class="admin-btn" onclick="downloadPreparedImage()" style="background:#2e7d32;">
+            💾 دانلود فایل برای آپلود در GitHub
+          </button>
+          <div style="font-size:0.75rem;color:#555;margin-top:0.8rem;line-height:1.7;">
+            بعد از دانلود:<br>
+            GitHub → images/ → روی همنام کلیک کن → مداد (Edit) → Upload file → همین فایل رو بده → Commit
+          </div>
         </div>
 
         <hr class="admin-divider">
-        <h4 class="admin-section-title" style="font-size:0.9rem;">Event Images</h4>
+        <h4 class="admin-section-title" style="font-size:0.9rem;">🎭 Event Images (کلیک برای تغییر)</h4>
         <div class="admin-image-grid" id="admin-event-images"></div>
         <div id="upload-event-inputs"></div>
+        
+        <hr class="admin-divider">
+        <h4 class="admin-section-title" style="font-size:0.9rem;">🗑 حذف عکس از Events</h4>
+        <p style="font-size:0.82rem;color:#888;margin-bottom:1rem;">برای حذف عکس از بخش Events، باید فایل را از GitHub حذف کنید:</p>
+        <div style="background:#fff3e0;border:1px solid #ff9800;padding:1rem;font-size:0.82rem;line-height:1.8;border-radius:4px;">
+          GitHub → فولدر images/ → روی فایل event_XX.jpg کلیک کن → آیکون سطل آشغال → Commit changes
+        </div>
       </div>
 
       <!-- CONTACT -->
@@ -867,10 +883,14 @@ function previewAndPrepare(input, name, previewId) {
   if (!file) return;
   const reader = new FileReader();
   reader.onload = function(e) {
-    document.getElementById(previewId).src = e.target.result;
+    const prevEl = document.getElementById(previewId);
+    if (prevEl) prevEl.src = e.target.result;
     preparedImageData = e.target.result;
     preparedImageName = name + '.jpg';
-    document.getElementById('upload-instructions').style.display = 'block';
+    const status = document.getElementById('upload-status');
+    const fname = document.getElementById('upload-filename');
+    if (status) status.style.display = 'block';
+    if (fname) fname.textContent = name + '.jpg';
   };
   reader.readAsDataURL(file);
 }
