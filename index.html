@@ -76,7 +76,7 @@ h2{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,3rem);font-we
 .disc-card{background:var(--ivory);border:1px solid var(--divider);overflow:hidden;transition:transform 0.25s,box-shadow 0.25s;display:flex;flex-direction:column;}
 .disc-card:hover{transform:translateY(-4px);box-shadow:0 12px 36px rgba(0,0,0,0.1);}
 .disc-card-img{width:100%;height:300px;object-fit:cover;display:block;}
-.disc-card-body{padding:1.1rem 1.3rem 3.8rem 1.3rem;position:relative;flex:1;}
+.disc-card-body{padding:1.1rem 1.3rem 3.8rem 1.3rem;position:relative;flex:1;min-height:140px;}
 .disc-card-title{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:400;margin-bottom:0.35rem;color:var(--ink);}
 .disc-card-meta{font-size:0.72rem;color:var(--muted);line-height:1.6;margin-bottom:0.8rem;}
 .disc-links{display:flex;gap:0.8rem;flex-wrap:wrap;}
@@ -189,11 +189,11 @@ section{padding:4rem 1.2rem;}
 .bio-grid{display:block;position:relative !important;overflow:hidden;background:#e8e3db;}
 .bio-portraits{display:none !important;}
 .bio-text{position:relative !important;z-index:1 !important;padding:1.5rem 1.2rem 2rem !important;background:rgba(232,227,219,0.97);}
-.disc-grid{grid-template-columns:1fr;gap:1rem;}
+.disc-grid{grid-template-columns:1fr 1fr;gap:1rem;}
 .disc-card-img{height:200px !important;}
 .disc-card-body{padding:0.9rem 1rem 3.2rem !important;}
 }
-@media(max-width:480px){.disc-grid{grid-template-columns:1fr 1fr;gap:1rem;}.concert-strip{grid-template-columns:1fr 1fr;}}
+@media(max-width:480px){.concert-strip{grid-template-columns:1fr 1fr;}}
 .social-icon-btn{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border:1px solid var(--accent);color:var(--accent);text-decoration:none;transition:background 0.2s,color 0.2s;margin-right:0.4rem;}
 .social-icon-btn:hover{background:var(--accent);color:var(--ivory);}
 .social-icon-btn svg{fill:currentColor;}
@@ -285,21 +285,7 @@ section{padding:4rem 1.2rem;}
         <img class="bio-portrait-img" src="images/bio_2.jpg" style="cursor:pointer;" alt="Vahid Taremi" loading="lazy">
       </div>
       <div class="bio-text" id="bio-text-content">
-        
-        
-        
-        <p>Vahid Taremi is an Iranian composer and a skilled player of the traditional Iranian instrument Shurangiz. He was born in 1987 and has established himself as a notable figure in the world of Persian music.</p>
-        <p>Taremi pursued his education at the Islamic Azad University, Tehran North Branch, where he earned both a Bachelor's and a Master's degree in Persian Literature. Additionally, he attended the Tehran Conservatory of Music from 2006 to 2009, focusing on playing Iranian instruments.</p>
-        <p>Throughout his career, Taremi has gained extensive teaching experience. He has taught at various institutions, including Farhang &amp; Honar University 46, Shahid Beheshti University, Tarbiat Modares University, Nafir Artistic and Cultural Institute, Javan Cultural Center, and the Center of Open Courses / Soureh Institute of Graduate Studies.</p>
-        <p>As a composer, Taremi has published several notable compositions. In 2019, he contributed to the music album <em>Little Black Fish</em> as a composer, released by the HaftCraft label in Belgium. In 2016, he improvised a piece for <em>Khayyam Khani</em> released by RAHA Records. His other compositions include <em>Shahre Sangestan</em> (2012) and <em>Khan-e-Hashtom</em> (2010), where he served as composer and conductor. He was also involved in the collaborative project <em>Self-Portrait</em> in 2009.</p>
-        <p>Vahid's musical accomplishments extend well beyond his composition work. Notable highlights include a Shurangiz and Setar duet with Behdad Babaei in Berlin in 2025, and a trio concert at the Aga Khan Centre in London in 2025, alongside Behdad Babaei on Setar and Majid Khalaj on Tombak. In 2025, he also performed across Europe with the Shurangiz–Setar–Tombak ensemble: London (Rich Mix Festival, 21 November), Manchester (22 November), Sheffield (23 November), Paris (30 November), Berlin (6 December), and Ghent — De Centrale Hall (13 December).</p>
-        <p>In 2023, Vahid performed as Shurangiz soloist in <em>The Phoenix</em> at the Oxford International Song Festival at the Holywell Music Room. In 2021, he was featured in the Maah-o-Nava online festival. In 2020, he was part of the Sipa Festival in Jakarta as a Shurangiz player with the Triangle Ensemble. In 2019, he performed at the Glasperlenspiel Festival in Tartu, Estonia, as part of the Haftcraft Band. His international performances span Belgium, China, the United Kingdom, and Iran.</p>
-        <p>Vahid has made significant contributions to radio, television, and cinema — serving as music critic and analyzer on programs including <em>Arghanoun</em>, <em>Karaneh</em>, and <em>Taranom</em>, and composing scores for films such as <em>A Report from Manaslu</em> (2015), <em>The Deteriorating World of Natia</em> (2013), and <em>Door Masho</em> (2014), as well as documentaries and TV series.</p>
-        <p>His contributions also extend to theater, with compositions for productions including <em>Afsoone Parizad</em> (2009), <em>Shab Kouche Eshgh</em> (2008), <em>Az o Be Yek Eshare</em> (2007), <em>Setare Kouchouloo</em> (2007), and <em>Istgah</em> (2006).</p>
-        <p>Vahid Taremi's versatile skills as a composer, instrumentalist, teacher, and collaborator have established him as a prominent figure in Persian music, contributing to its richness and preservation.</p>
-      
-      
-      
+        <p>Vahid Taremi is an Iranian composer and a skilled player of the traditional Iranian instrument Shurangiz. He was born in 1987 and has established himself as a notable figure in the world of Persian music.</p><p>Taremi pursued his education at the Islamic Azad University, Tehran North Branch, where he earned both a Bachelor's and a Master's degree in Persian Literature. Additionally, he attended the Tehran Conservatory of Music from 2006 to 2009, focusing on playing Iranian instruments.</p><p>Throughout his career, Taremi has gained extensive teaching experience. He has taught at various institutions, including Farhang and Honar University 46, Shahid Beheshti University, Tarbiat Modares University, Nafir Artistic and Cultural Institute, Javan Cultural Center, and the Center of open courses/Soureh Institute of Graduate Studies.</p><p>As a composer, Taremi has published several notable compositions. In 2019, he contributed to the music album "Little Black Fish" as a composer, which was released by the HaftCraft label in Belgium. In 2016, he also improvised a piece for the music album "Khayyam Khani" released by RAHA records. His other compositions include the music albums "Shahre Sangestan" (2012) and "Khan-e-Hashtom" (2010), where he served as a composer and conductor. Furthermore, he was involved in the collaborative project "Self-Portrait" in 2009, providing his compositional skills.</p><p>Vahid's musical accomplishments extend well beyond his composition work. He has graced the stages of numerous concerts worldwide, leaving a mark with each performance. Notable highlights in his career include a Shurangiz and Setar duet with Behdad Babaei in Berlin in 2025, as well as a trio concert at the Aga Khan Centre in London in 2025, where Vahid performed on the Shurangiz alongside Behdad Babaei on the Setar and Majid Khalaj on the Tombak. In the same year, he performed in a series of concerts across Europe with the Shurangiz-Setar-Tombak ensemble, including London (Rich Mix Festival, 21 November 2025) with Behdad Babaei and Navid Afghah, Manchester (22 November), Sheffield (23 November), Paris (30 November), Berlin (6 December), and Ghent (De Centrale Hall, 13 December) with Behdad Babaei and Majid Khalaj.</p><p>In 2023, Vahid performed as a Shurangiz soloist in The Phoenix at the Oxford International Song Festival, where he shared the stage with a piano, cello, soprano, and baritone at the prestigious Holywell Music Room. In 2021, Vahid was featured as a Shurangiz soloist in the Maah-o-Nava online festival, where he performed improvisations incorporating the kamanche, percussion, and vocal elements. In 2020, he was a vital part of the Sipa Festival in Jakarta, Indonesia, as a Shurangiz player with the Triangle Ensemble (Trio). The previous year, in 2019, he performed at the Glasperlenspiel Festival in Tartu, Estonia, as part of the Haftcraft Band.</p><p>Vahid's talents have also been appreciated in various international settings, including performances in Belgium, China, the United Kingdom and Iran, where he consistently demonstrated his abilities as a composer and musician.</p><p>Vahid has made significant contributions to radio, television, and cinema. He served as a music critic and analyzer on various programs, including "Arghanoun," "Karaneh," and "Taranom." He also wrote music for films such as "A Report from Manaslu" (2015), "The Deteriorating World of Natia" (2013), and "Door Masho" (2014), as well as documentaries and TV series.</p><p>His contributions also extend to the theater, where he has composed music for several productions. Notable works include "Afsoone Parizad" (2009), "Shab Kouche Eshgh" (2008), "Az o Be Yek Eshare" (2007), "Setare Kouchouloo" (2007), and "Istgah" (2006), collaborating with esteemed directors and playwrights.</p><p>Vahid Taremi's versatile skills as a composer, instrumentalist, teacher, and collaborator have established him as a prominent figure in Persian music, contributing to its richness and preservation.</p>
       </div>
     </div>
   </div>
@@ -309,14 +295,6 @@ section{padding:4rem 1.2rem;}
     <span class="section-label">Music</span>
     <h2>Discography</h2>
     <div class="disc-grid" id="disc-grid">
-      <div class="disc-card">
-        <img class="pt disc-card-img" src="images/disc_khan.jpg" alt="Khan-e Hashtom" loading="lazy">
-        <div class="disc-card-body">
-          <div class="disc-card-title">Khan-e Hashtom</div>
-          <div class="disc-card-meta">Composer, Conductor, Tar &amp; Setar<br>Vocalist: Ramin Bahiraei · Poem: Mehdi Akhavan Sales<br>2010 · Avaye Barbad Records</div>
-          <div class="disc-links"><div class="disc-link-wrap"><a href="https://www.youtube.com/watch?v=N-3NdzKn-K4" target="_blank" rel="noopener noreferrer" class="disc-link">Listen →</a></div></div>
-        </div>
-      </div>
       <div class="disc-card">
         <img class="pt disc-card-img" src="images/disc_shahre.jpg" alt="Shahre Sangestan" loading="lazy">
         <div class="disc-card-body">
@@ -748,18 +726,27 @@ section{padding:4rem 1.2rem;}
     </div>
   </div>
 </div>
-</div>
 
 <script>
-const BIO_DEFAULT=`Vahid Taremi is an Iranian composer and a skilled player of traditional Iranian instruments, including the Shurangiz, Tar, and Setar. Born in 1987, he has established himself as a notable figure in the world of Persian music.
+const BIO_DEFAULT=`Vahid Taremi is an Iranian composer and a skilled player of the traditional Iranian instrument Shurangiz. He was born in 1987 and has established himself as a notable figure in the world of Persian music.
 
-Taremi pursued his education at the Islamic Azad University, Tehran North Branch, earning both a Bachelor's and a Master's degree in Persian Literature. He also attended the Tehran Conservatory of Music from 2006 to 2009, focusing on playing Iranian instruments.
+Taremi pursued his education at the Islamic Azad University, Tehran North Branch, where he earned both a Bachelor's and a Master's degree in Persian Literature. Additionally, he attended the Tehran Conservatory of Music from 2006 to 2009, focusing on playing Iranian instruments.
 
-Throughout his career, he has taught at institutions including Farhang & Honar University 46, Shahid Beheshti University, Tarbiat Modares University, Nafir Artistic and Cultural Institute, Javan Cultural Center, and the Soureh Institute of Graduate Studies.
+Throughout his career, Taremi has gained extensive teaching experience. He has taught at various institutions, including Farhang and Honar University 46, Shahid Beheshti University, Tarbiat Modares University, Nafir Artistic and Cultural Institute, Javan Cultural Center, and the Center of open courses/Soureh Institute of Graduate Studies.
 
-As a composer, Taremi has contributed to music albums such as Little Black Fish (HaftCraft, Belgium, 2019), Khayyam Khani (RAHA Records, 2016), Shahre Sangestan (2012), and Khan-e-Hashtom (2010). He has performed in concerts across Europe, Asia, and Iran — including London, Paris, Berlin, Ghent, Oxford, Jakarta, and Brussels.
+As a composer, Taremi has published several notable compositions. In 2019, he contributed to the music album "Little Black Fish" as a composer, which was released by the HaftCraft label in Belgium. In 2016, he also improvised a piece for the music album "Khayyam Khani" released by RAHA records. His other compositions include the music albums "Shahre Sangestan" (2012) and "Khan-e-Hashtom" (2010), where he served as a composer and conductor. Furthermore, he was involved in the collaborative project "Self-Portrait" in 2009, providing his compositional skills.
 
-He has served as a music critic and analyst on Iranian television and radio programs, and has composed scores for films, documentaries, and theatrical productions.`;
+Vahid's musical accomplishments extend well beyond his composition work. He has graced the stages of numerous concerts worldwide, leaving a mark with each performance. Notable highlights in his career include a Shurangiz and Setar duet with Behdad Babaei in Berlin in 2025, as well as a trio concert at the Aga Khan Centre in London in 2025, where Vahid performed on the Shurangiz alongside Behdad Babaei on the Setar and Majid Khalaj on the Tombak. In the same year, he performed in a series of concerts across Europe with the Shurangiz-Setar-Tombak ensemble, including London (Rich Mix Festival, 21 November 2025) with Behdad Babaei and Navid Afghah, Manchester (22 November), Sheffield (23 November), Paris (30 November), Berlin (6 December), and Ghent (De Centrale Hall, 13 December) with Behdad Babaei and Majid Khalaj.
+
+In 2023, Vahid performed as a Shurangiz soloist in The Phoenix at the Oxford International Song Festival, where he shared the stage with a piano, cello, soprano, and baritone at the prestigious Holywell Music Room. In 2021, Vahid was featured as a Shurangiz soloist in the Maah-o-Nava online festival, where he performed improvisations incorporating the kamanche, percussion, and vocal elements. In 2020, he was a vital part of the Sipa Festival in Jakarta, Indonesia, as a Shurangiz player with the Triangle Ensemble (Trio). The previous year, in 2019, he performed at the Glasperlenspiel Festival in Tartu, Estonia, as part of the Haftcraft Band.
+
+Vahid's talents have also been appreciated in various international settings, including performances in Belgium, China, the United Kingdom and Iran, where he consistently demonstrated his abilities as a composer and musician.
+
+Vahid has made significant contributions to radio, television, and cinema. He served as a music critic and analyzer on various programs, including "Arghanoun," "Karaneh," and "Taranom." He also wrote music for films such as "A Report from Manaslu" (2015), "The Deteriorating World of Natia" (2013), and "Door Masho" (2014), as well as documentaries and TV series.
+
+His contributions also extend to the theater, where he has composed music for several productions. Notable works include "Afsoone Parizad" (2009), "Shab Kouche Eshgh" (2008), "Az o Be Yek Eshare" (2007), "Setare Kouchouloo" (2007), and "Istgah" (2006), collaborating with esteemed directors and playwrights.
+
+Vahid Taremi's versatile skills as a composer, instrumentalist, teacher, and collaborator have established him as a prominent figure in Persian music, contributing to its richness and preservation.`;
 let siteData={bio:BIO_DEFAULT,dynEvents:[],dynAlbums:[]};
 let adminPassword=localStorage.getItem('vt_pass_plain')||'707c4e1d92beaf0f0ccfad6c4672254ecd82dfa8d62f423ad5ac4d3ec91e1c9c';
 let jsonbinKey=localStorage.getItem('vt_jb_key')||'';
@@ -770,12 +757,8 @@ async function loadFromCloud(){
   if(r.ok){const j=await r.json();siteData=j.record;renderDynamic();}}catch(e){}
 }
 async function saveToCloud(){
-  if(!jsonbinKey){alert('Please enter your JSONBin API key first.');return false;}
-  try{
-    if(!jsonbinId){const r=await fetch('https://api.jsonbin.io/v3/b',{method:'POST',headers:{'Content-Type':'application/json','X-Master-Key':jsonbinKey,'X-Bin-Name':'VahidTaremi'},body:JSON.stringify(siteData)});const j=await r.json();jsonbinId=j.metadata.id;localStorage.setItem('vt_jb_id',jsonbinId);}
-    else{await fetch(`https://api.jsonbin.io/v3/b/${jsonbinId}`,{method:'PUT',headers:{'Content-Type':'application/json','X-Master-Key':jsonbinKey},body:JSON.stringify(siteData)});}
-    return true;
-  }catch(e){alert('Save failed. Check API key.');return false;}
+  localStorage.setItem('vt_data', JSON.stringify(siteData));
+  return Promise.resolve(true);
 }
 function saveApiKey(){const k=document.getElementById('api-key-input').value.trim();if(!k)return;jsonbinKey=k;localStorage.setItem('vt_jb_key',k);document.getElementById('api-key-msg').style.display='block';setTimeout(()=>{document.getElementById('setup-notice').style.display='none';},1500);}
 function renderDynamic(){
@@ -790,7 +773,13 @@ function renderDynamic(){
     dg.insertAdjacentHTML('afterbegin',siteData.dynAlbums.map(a=>'<div class="disc-card">'+(a.img?'<img class="pt disc-card-img" src="'+a.img+'" alt="'+a.title+'" loading="lazy">':'<div style="background:#e8e2d6;aspect-ratio:1/1;"></div>')+'<div class="disc-card-body"><div class="disc-card-title">'+a.title+'</div><div class="disc-card-meta">'+a.meta+'<br>'+a.year+'</div>'+(a.link?'<div class="disc-links"><a href="'+a.link+'" target="_blank" rel="noopener" class="disc-link">Listen →</a></div>':'')+'</div></div>').join(''));
   }
 }
-function saveBio(){siteData.bio=document.getElementById('admin-bio').value;renderDynamic();saveToCloud().then(ok=>{if(ok){const m=document.getElementById('bio-save-msg');m.style.display='block';setTimeout(()=>m.style.display='none',2000);}});}
+function saveBio(){
+  siteData.bio=document.getElementById('admin-bio').value;
+  localStorage.setItem('vt_bio', siteData.bio);
+  renderDynamic();
+  const m=document.getElementById('bio-save-msg');
+  if(m){m.style.display='block';setTimeout(()=>m.style.display='none',2000);}
+}
 function addEvent(){const date=document.getElementById('ev-date').value.trim(),title=document.getElementById('ev-title').value.trim(),desc=document.getElementById('ev-desc').value.trim(),link=document.getElementById('ev-link').value.trim();if(!date||!title){alert('Date and title required.');return;}if(!siteData.dynEvents)siteData.dynEvents=[];siteData.dynEvents.unshift({date,title,desc,link});renderAdminEvents();saveToCloud();['ev-date','ev-title','ev-desc','ev-link'].forEach(id=>document.getElementById(id).value='');}
 function deleteEvent(i){if(!confirm('Delete?'))return;siteData.dynEvents.splice(i,1);renderAdminEvents();saveToCloud();}
 function addAlbum(){const title=document.getElementById('al-title').value.trim(),year=document.getElementById('al-year').value.trim(),meta=document.getElementById('al-meta').value.trim(),img=document.getElementById('al-img').value.trim(),link=document.getElementById('al-link').value.trim();if(!title){alert('Title required.');return;}if(!siteData.dynAlbums)siteData.dynAlbums=[];siteData.dynAlbums.unshift({title,year,meta,img,link});renderAdminAlbums();saveToCloud();['al-title','al-year','al-meta','al-img','al-link'].forEach(id=>document.getElementById(id).value='');}
