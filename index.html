@@ -1000,6 +1000,19 @@ document.addEventListener('DOMContentLoaded', async function(){
   }
 });
 </script>
+<div id="lightbox">
+  <button id="lightbox-close" onclick="closeLightbox()" aria-label="Close">×</button>
+  <button id="lightbox-prev" onclick="lightboxNav(-1)" aria-label="Previous">‹</button>
+  <div id="lightbox-inner">
+    <img id="lightbox-img" src="" alt="">
+    <div style="display:flex;align-items:center;gap:1.5rem;">
+      <span id="lightbox-counter"></span>
+      <a id="lightbox-download" href="" download>↓ Download</a>
+    </div>
+  </div>
+  <button id="lightbox-next" onclick="lightboxNav(1)" aria-label="Next">›</button>
+</div>
+
 <script>
 (function(){
   // Bio images
