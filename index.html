@@ -107,6 +107,23 @@ h2{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,3rem);font-we
 .event-info p{font-size:0.78rem;color:var(--muted);line-height:1.5;}
 .event-link{font-size:0.65rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);text-decoration:none;white-space:nowrap;border-bottom:1px solid transparent;transition:border-color 0.2s;}
 .event-link:hover{border-color:var(--accent);}
+/* The Trembling Land — 2026 tour feature */
+.tour-feature{margin:0 0 3.2rem;padding:2.4rem 0 2.6rem;border-top:1px solid var(--divider);border-bottom:1px solid var(--divider);}
+.tour-kicker{font-size:0.65rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--accent);}
+.tour-title{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:2.3rem;line-height:1.15;margin:0.5rem 0 0.2rem;}
+.tour-title span{font-style:italic;color:var(--muted);font-size:1.5rem;margin-left:0.6rem;}
+.tour-sub{font-size:0.85rem;color:var(--muted);margin-bottom:1.6rem;}
+.tour-statement{font-family:'Cormorant Garamond',serif;font-size:1.15rem;line-height:1.7;max-width:640px;color:var(--ink);}
+.tour-statement p{margin-bottom:0.8rem;}
+.tour-statement .last{font-style:italic;color:var(--accent);}
+.tour-posters{display:grid;grid-template-columns:repeat(4,1fr);gap:0.9rem;margin-top:2rem;}
+.tour-posters a{display:block;text-decoration:none;color:var(--muted);}
+.tour-posters img{width:100%;aspect-ratio:4/5;object-fit:cover;display:block;box-shadow:0 6px 22px rgba(15,13,10,0.12);transition:transform 0.3s;}
+.tour-posters a:hover img{transform:translateY(-3px);}
+.tour-posters .cap{font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;margin-top:0.55rem;}
+.tour-credit{font-size:0.72rem;color:var(--muted);margin-top:1.4rem;letter-spacing:0.02em;}
+.event-row.upcoming .event-date::after{content:"Upcoming";display:block;font-family:'Inter',sans-serif;font-size:0.58rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);margin-top:0.2rem;}
+@media(max-width:760px){.tour-posters{grid-template-columns:1fr 1fr;}.tour-title{font-size:1.9rem;}.tour-title span{display:block;margin:0.2rem 0 0;font-size:1.2rem;}}
 #projects{background:var(--hero-bg);color:var(--ivory);}
 #projects h2{color:var(--ivory);}
 .projects-cols{display:grid;grid-template-columns:1fr 1fr 1fr;gap:3rem;}
@@ -358,6 +375,24 @@ section{padding:4rem 1.2rem;}
   <div class="section-inner">
     <span class="section-label">Performances</span>
     <h2>Events</h2>
+    <div class="tour-feature">
+      <span class="tour-kicker">Part of the 2026 European Tour</span>
+      <h3 class="tour-title">The Trembling Land<span>Larzeh-Bum</span></h3>
+      <div class="tour-sub">A new composition by Vahid Taremi, arranged by Rouzbeh Esfand, featuring vocals by Samin Ghorbani</div>
+      <div class="tour-statement">
+        <p>Each of us left a shadow behind in Iran, a part of ourselves shaped under pressure, never fully allowed to emerge. Years later, scattered across three European cities, those shadows found their voice again.</p>
+        <p><em>Larzeh-Bum</em> (The Trembling Land) brings together classical Persian music and contemporary electronics: the voice of Samin Ghorbani, the Shurangiz of Vahid Taremi, and the electronics and clarinet of Rouzbeh Esfand. Three musicians, separated by distance yet connected through a shared artistic language, giving form to what was left behind.</p>
+        <p>Not a retelling of the past, but a voice for what remained unspoken.</p>
+        <p class="last">This music is our shadow. Now it steps into the light.</p>
+      </div>
+      <div class="tour-posters">
+        <a><img src="images/trembling_birmingham.jpg" alt="The Trembling Land — Birmingham" loading="lazy"><div class="cap">12 Nov · Birmingham</div></a>
+        <a><img src="images/trembling_manchester.jpg" alt="The Trembling Land — Manchester" loading="lazy"><div class="cap">13 Nov · Manchester</div></a>
+        <a href="https://ncem.co.uk/events/the-trembling-land/" target="_blank" rel="noopener noreferrer"><img src="images/trembling_york.jpg" alt="The Trembling Land — York" loading="lazy"><div class="cap">14 Nov · York</div></a>
+        <a href="https://www.thetabernaclew11.com/events/2026/11/15/the-trembling-land" target="_blank" rel="noopener noreferrer"><img src="images/trembling_london.jpg" alt="The Trembling Land — London" loading="lazy"><div class="cap">15 Nov · London</div></a>
+      </div>
+      <div class="tour-credit">Samin Ghorbani: Persian classical voice (Germany) · Rouzbeh Esfand: Electronics, Clarinet &amp; Arrangement (Netherlands) · Vahid Taremi: Composer, Shurangiz (UK)<br>Graphic design &amp; visuals by Mahsa Okhravi &amp; Shokouh Ahmadi</div>
+    </div>
     <div class="concert-strip">
       <div class="concert-strip-item"><img class="pt" src="images/event_01.jpg" loading="lazy"></div>
       <div class="concert-strip-item"><img class="pt" src="images/event_02.jpg" loading="lazy"></div>
@@ -373,6 +408,24 @@ section{padding:4rem 1.2rem;}
       <div class="concert-strip-item"><img class="pt" src="images/event_12.jpg" loading="lazy"></div>
     </div>
     <div class="events-list" id="events-list">
+      <div class="event-row upcoming">
+        <div class="event-date">15 Nov 2026</div>
+        <div class="event-info"><h3>The Trembling Land — EFG London Jazz Festival, The Tabernacle, London</h3><p>Vahid Taremi: Composer, Shurangiz · Samin Ghorbani: Vocals · Rouzbeh Esfand: Clarinet, Electronics, Arrangements</p></div>
+        <a href="https://www.thetabernaclew11.com/events/2026/11/15/the-trembling-land" target="_blank" rel="noopener noreferrer" class="event-link">Tickets →</a>
+      </div>
+      <div class="event-row upcoming">
+        <div class="event-date">14 Nov 2026</div>
+        <div class="event-info"><h3>The Trembling Land — National Centre for Early Music, York</h3><p>Vahid Taremi: Composer, Shurangiz · Samin Ghorbani: Vocals · Rouzbeh Esfand: Clarinet, Electronics, Arrangements</p></div>
+        <a href="https://ncem.co.uk/events/the-trembling-land/" target="_blank" rel="noopener noreferrer" class="event-link">Tickets →</a>
+      </div>
+      <div class="event-row upcoming">
+        <div class="event-date">13 Nov 2026</div>
+        <div class="event-info"><h3>The Trembling Land — Sahba Academy, Manchester</h3><p>Vahid Taremi: Composer, Shurangiz · Samin Ghorbani: Vocals · Rouzbeh Esfand: Clarinet, Electronics, Arrangements</p></div>
+      </div>
+      <div class="event-row upcoming">
+        <div class="event-date">12 Nov 2026</div>
+        <div class="event-info"><h3>The Trembling Land — Shiraz Academy, Birmingham</h3><p>Vahid Taremi: Composer, Shurangiz · Samin Ghorbani: Vocals · Rouzbeh Esfand: Clarinet, Electronics, Arrangements</p></div>
+      </div>
       <div class="event-row">
         <div class="event-date">13 Dec 2025</div>
         <div class="event-info"><h3>Nooshan Trio — De Centrale, Ghent</h3><p>Behdad Babaei: Setar · Vahid Taremi: Shurangiz · Madjid Khaladj: Tonbak</p></div>
