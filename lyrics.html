@@ -1,0 +1,432 @@
+<!doctype html>
+<html lang="fa">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Concert Lyrics · اشعار کنسرت</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Cormorant+SC:wght@400;500&family=Noto+Nastaliq+Urdu:wght@400;600&family=Noto+Naskh+Arabic:wght@400;500&family=Vazirmatn:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0b1322; --bg2:#101b30; --card:rgba(255,255,255,.025);
+    --ink:#efe6d2; --muted:#b4a888; --faint:#6f6a5c;
+    --gold:#cfae6a; --gold2:#e9cf94; --gold-dim:rgba(207,174,106,.28);
+    --turq:#5fb3a8; --az:#e3a873; --az-bg:rgba(227,168,115,.07);
+    --pattern-op:.05;
+  }
+  :root[data-theme="light"]{
+    --bg:#f6efe0; --bg2:#efe5cf; --card:rgba(120,90,40,.035);
+    --ink:#2b2116; --muted:#6e5d42; --faint:#a69676;
+    --gold:#9b7428; --gold2:#7c5a18; --gold-dim:rgba(155,116,40,.3);
+    --turq:#2f7c73; --az:#9c5a22; --az-bg:rgba(156,90,34,.06);
+    --pattern-op:.07;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  html,body{margin:0}
+  body{
+    background:radial-gradient(1200px 700px at 50% -10%, var(--bg2), var(--bg) 70%) fixed, var(--bg);
+    color:var(--ink);
+    font-family:"Cormorant Garamond",Georgia,serif;
+    line-height:1.6; -webkit-font-smoothing:antialiased; -webkit-text-size-adjust:100%;
+    min-height:100vh;
+  }
+  /* girih-like star lattice */
+  body::before{
+    content:""; position:fixed; inset:0; pointer-events:none; opacity:var(--pattern-op);
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='96' viewBox='0 0 96 96'%3E%3Cg fill='none' stroke='%23cfae6a' stroke-width='1'%3E%3Cpath d='M48 20 L56 40 L76 48 L56 56 L48 76 L40 56 L20 48 L40 40Z'/%3E%3Crect x='30' y='30' width='36' height='36' transform='rotate(45 48 48)'/%3E%3Crect x='30' y='30' width='36' height='36'/%3E%3Cpath d='M0 0 L20 20 M96 0 L76 20 M0 96 L20 76 M96 96 L76 76'/%3E%3C/g%3E%3C/svg%3E");
+    background-size:96px 96px;
+  }
+  .wrap{position:relative;max-width:1040px;margin:0 auto;padding:0 16px 80px}
+
+  /* ───── Hero ───── */
+  .hero{text-align:center;padding:64px 0 40px;position:relative}
+  .shamseh{width:120px;height:120px;margin:0 auto 18px;display:block;color:var(--gold)}
+  .shamseh .spin{transform-origin:60px 60px;animation:spin 120s linear infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  @media (prefers-reduced-motion:reduce){.shamseh .spin{animation:none}}
+  .hero .fa-title{
+    font-family:"Noto Nastaliq Urdu",serif; direction:rtl; font-size:2.4rem; line-height:2.3;
+    color:var(--gold2); margin:0;
+  }
+  .hero .en-title{
+    font-family:"Cormorant SC",serif; letter-spacing:.32em; font-size:1rem; color:var(--muted);
+    margin:4px 0 22px; text-indent:.32em;
+  }
+  .names{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;align-items:center}
+  .names .n{text-align:center}
+  .names .n .fa{font-family:"Vazirmatn",sans-serif;font-weight:300;font-size:.9rem;color:var(--ink);direction:rtl}
+  .names .n .en{font-style:italic;font-size:.95rem;color:var(--muted)}
+  .names .n .i{font-family:"Cormorant SC",serif;font-size:.78rem;letter-spacing:.14em;color:var(--faint)}
+  .names .dot{width:5px;height:5px;transform:rotate(45deg);background:var(--gold);opacity:.6;margin:0 6px}
+
+  .orn{display:flex;align-items:center;gap:14px;color:var(--gold);margin:34px auto;max-width:520px}
+  .orn::before,.orn::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--gold-dim) 30%,var(--gold-dim) 70%,transparent)}
+  .orn svg{width:22px;height:22px;flex:none}
+
+  /* ───── Nav ───── */
+  .bar{
+    position:sticky;top:0;z-index:10;margin:0 -16px;padding:10px 16px;
+    background:linear-gradient(var(--bg) 70%, transparent);
+    display:flex;justify-content:center;gap:4px;
+  }
+  .seg{display:inline-flex;border:1px solid var(--gold-dim);border-radius:999px;padding:3px;background:var(--bg)}
+  .seg button{
+    font:inherit;font-size:.95rem;background:transparent;color:var(--muted);border:0;border-radius:999px;
+    padding:4px 16px;cursor:pointer;transition:all .25s;
+  }
+  .seg button .fa{font-family:"Vazirmatn",sans-serif;font-size:.82rem}
+  .seg button.on{background:var(--gold);color:var(--bg)}
+
+  .toc{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 18px;margin:10px auto 0;max-width:820px}
+  .toc a{color:var(--muted);text-decoration:none;font-size:.95rem;font-style:italic;border-bottom:1px solid transparent;transition:.2s}
+  .toc a:hover{color:var(--gold2);border-color:var(--gold-dim)}
+  .toc a .fa{font-family:"Vazirmatn",sans-serif;font-style:normal;font-size:.8rem;margin-inline-start:4px}
+
+  /* ───── Sections ───── */
+  section{position:relative;margin:56px 0 0;scroll-margin-top:70px}
+  .head{text-align:center;margin-bottom:28px}
+  .num{
+    display:inline-grid;place-items:center;width:44px;height:44px;margin-bottom:10px;position:relative;
+    font-family:"Cormorant SC",serif;color:var(--gold);font-size:1rem;
+  }
+  .num::before,.num::after{content:"";position:absolute;inset:6px;border:1px solid var(--gold-dim)}
+  .num::after{transform:rotate(45deg)}
+  .head .fa{font-family:"Noto Nastaliq Urdu",serif;direction:rtl;font-size:1.7rem;line-height:2.2;color:var(--gold2)}
+  .head .en{font-family:"Cormorant SC",serif;letter-spacing:.18em;font-size:1.15rem;color:var(--ink);margin-top:-4px}
+  .head .sub{font-style:italic;color:var(--muted);font-size:1rem}
+  .head .note{
+    display:inline-block;margin-top:14px;padding:8px 18px;border:1px solid var(--gold-dim);border-radius:2px;
+    font-style:italic;color:var(--muted);font-size:.95rem;
+  }
+  .head .note .fa-n{display:block;font-family:"Vazirmatn",sans-serif;font-style:normal;font-size:.82rem;direction:rtl}
+  .poet{margin-top:10px;display:flex;flex-direction:column;align-items:center;gap:0}
+  .poet .fa-p{font-family:"Vazirmatn",sans-serif;font-weight:300;font-size:.88rem;color:var(--turq);direction:rtl}
+  .poet .en-p{font-family:"Cormorant SC",serif;letter-spacing:.12em;font-size:.85rem;color:var(--turq);opacity:.85}
+  .inst{text-align:center;color:var(--faint);font-style:italic;letter-spacing:.06em}
+  .inst span{font-family:"Vazirmatn",sans-serif;font-style:normal;font-size:.85rem}
+
+  .poem{
+    position:relative;background:var(--card);border:1px solid var(--gold-dim);
+    padding:26px 34px;border-radius:2px;
+  }
+  /* illuminated corners */
+  .poem::before,.poem::after,.poem>.c1,.poem>.c2{
+    content:"";position:absolute;width:18px;height:18px;border:1.5px solid var(--gold);
+  }
+  .poem::before{top:-6px;left:-6px;border-right:0;border-bottom:0}
+  .poem::after{top:-6px;right:-6px;border-left:0;border-bottom:0}
+  .poem>.c1{bottom:-6px;left:-6px;border-right:0;border-top:0}
+  .poem>.c2{bottom:-6px;right:-6px;border-left:0;border-top:0}
+  .poem .spine{position:absolute;top:26px;bottom:26px;left:50%;width:1px;background:linear-gradient(transparent,var(--gold-dim) 10%,var(--gold-dim) 90%,transparent)}
+
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:0 68px;padding:14px 0;position:relative}
+  .row + .row::before{
+    content:"";position:absolute;top:0;left:50%;width:7px;height:7px;margin:-3.5px 0 0 -3.5px;
+    transform:rotate(45deg);background:var(--bg);border:1px solid var(--gold-dim);
+  }
+  .en p,.fa p{margin:0;text-wrap:balance}
+  .row .en{font-size:1.18rem;font-weight:400;align-self:center}
+  .row .en p + p{padding-left:1.4em}
+  .row .fa{
+    direction:rtl;text-align:right;align-self:center;
+    font-family:"Noto Nastaliq Urdu","Noto Naskh Arabic",serif;font-size:1.22rem;line-height:2.35;
+  }
+  .row .fa p + p{padding-right:1.6em}
+  .row.refrain .en{font-style:italic;color:var(--muted)}
+  .row.refrain .fa{color:var(--muted)}
+  .row.refrain .fa::after{content:"(ترجیع)";display:block;font-family:"Vazirmatn",sans-serif;font-size:.7rem;color:var(--faint);line-height:1}
+  .row.refrain .en::after{content:"refrain";display:block;font-family:"Cormorant SC",serif;letter-spacing:.14em;font-size:.75rem;color:var(--faint);font-style:normal}
+
+  /* ───── Azerbaijani passage ───── */
+  .row.az{
+    margin:16px -18px;padding:22px 18px;background:var(--az-bg);
+    border-top:1px solid var(--az);border-bottom:1px solid var(--az);
+  }
+  .row.az::before{display:none}
+  .row.az + .row::before{display:none}
+  .tag{
+    display:inline-flex;align-items:center;gap:6px;margin-bottom:10px;
+    font-family:"Vazirmatn",sans-serif;font-size:.72rem;color:var(--az);letter-spacing:.02em;
+  }
+  .tag::before{content:"";width:6px;height:6px;transform:rotate(45deg);background:var(--az)}
+  .row.az .en .tag{font-family:"Cormorant SC",serif;font-size:.82rem;letter-spacing:.12em}
+  .az-orig p{
+    font-family:"Vazirmatn",sans-serif;font-weight:500;font-size:1.12rem;line-height:2.1;color:var(--az);
+  }
+  .az-tr{margin-top:14px;padding-top:12px;border-top:1px dashed var(--gold-dim)}
+  .az-tr .tag{color:var(--muted)} .az-tr .tag::before{background:var(--muted)}
+  .az-tr p{
+    font-family:"Noto Naskh Arabic",serif;font-size:1.02rem;line-height:2;color:var(--muted);
+  }
+  .row.az .en p{font-style:italic}
+
+  /* ───── Footer ───── */
+  footer{text-align:center;margin-top:70px}
+  footer .fa{font-family:"Noto Nastaliq Urdu",serif;direction:rtl;font-size:1.15rem;line-height:2.2;color:var(--muted)}
+  footer a.site{
+    display:inline-block;margin-top:14px;padding:10px 26px;border:1px solid var(--gold);color:var(--gold2);
+    text-decoration:none;font-family:"Cormorant SC",serif;letter-spacing:.2em;font-size:.95rem;transition:.25s;
+  }
+  footer a.site:hover{background:var(--gold);color:var(--bg)}
+  .theme{display:block;margin:22px auto 0;background:none;border:0;color:var(--faint);font:inherit;font-style:italic;cursor:pointer}
+
+  /* language filters */
+  body.only-fa .row .en, body.only-en .row .fa, body.only-fa .spine, body.only-en .spine{display:none}
+  body.only-fa .row, body.only-en .row{grid-template-columns:1fr}
+  body.only-fa .row::before, body.only-en .row::before{left:50%}
+  body.only-fa .row .fa{text-align:center} body.only-fa .row .fa p + p{padding-right:0}
+  body.only-en .row .en{text-align:center} body.only-en .row .en p + p{padding-left:0}
+
+  /* ───── Mobile ───── */
+  @media (max-width:700px){
+    .hero{padding:44px 0 26px}
+    .hero .fa-title{font-size:1.9rem}
+    .shamseh{width:92px;height:92px}
+    .poem{padding:18px 18px}
+    .poem .spine{display:none}
+    .row{grid-template-columns:1fr;gap:6px;padding:16px 0;text-align:center}
+    .row::before{left:50% !important}
+    /* on phones: Naskh for verses — more compact and readable in a dark hall */
+    .row .fa{order:-1;text-align:center;font-family:"Noto Naskh Arabic",serif;font-size:1.14rem;line-height:1.95}
+    .row .fa p + p,.row .en p + p{padding:0}
+    .row .en{font-size:1.04rem;line-height:1.45;color:var(--muted)}
+    .row.az{margin:14px -10px;padding:18px 12px}
+    .az-orig p{font-size:1rem;line-height:1.9}
+    .az-tr p{font-size:.95rem;line-height:1.85}
+    .poem{padding:14px 16px}
+    .head .fa{font-size:1.45rem}
+    .section,section{margin-top:40px}
+    .orn{margin:24px auto}
+    .bar{padding:6px 16px}
+    .seg button{padding:3px 13px;font-size:.9rem}
+    .toc{display:none}
+  }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <symbol id="star" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.1">
+      <rect x="5" y="5" width="14" height="14"/><rect x="5" y="5" width="14" height="14" transform="rotate(45 12 12)"/>
+      <circle cx="12" cy="12" r="2.2" fill="currentColor" stroke="none"/></g></symbol>
+  </defs>
+</svg>
+
+<div class="wrap">
+  <header class="hero">
+    <svg class="shamseh" viewBox="0 0 120 120" aria-hidden="true">
+      <g fill="none" stroke="currentColor">
+        <g class="spin" stroke-width=".7" opacity=".55">
+          <circle cx="60" cy="60" r="56"/>
+          <g id="rays"></g>
+        </g>
+        <g stroke-width="1.1">
+          <rect x="32" y="32" width="56" height="56"/>
+          <rect x="32" y="32" width="56" height="56" transform="rotate(45 60 60)"/>
+          <rect x="40" y="40" width="40" height="40" transform="rotate(22.5 60 60)" opacity=".6"/>
+          <rect x="40" y="40" width="40" height="40" transform="rotate(67.5 60 60)" opacity=".6"/>
+          <circle cx="60" cy="60" r="12"/>
+        </g>
+        <circle cx="60" cy="60" r="4" fill="currentColor" stroke="none"/>
+      </g>
+    </svg>
+    <h1 class="fa-title">اشعارِ کنسرت</h1>
+    <div class="en-title">Concert Lyrics</div>
+    <div class="names">
+      <div class="n"><div class="fa">وحید طارمی</div><div class="en">Vahid Taremi</div></div>
+      <span class="dot"></span>
+      <div class="n"><div class="fa">ثمین قربانی</div><div class="en">Samin Ghorbani</div></div>
+      <span class="dot"></span>
+      <div class="n"><div class="fa">روزبه اسفند</div><div class="en">Rouzbeh Esfand</div></div>
+    </div>
+  </header>
+
+  <div class="bar">
+    <div class="seg" role="group" aria-label="Language">
+      <button class="on" data-mode="both">Both <span class="fa">· هر دو</span></button>
+      <button data-mode="only-fa"><span class="fa">فارسی</span></button>
+      <button data-mode="only-en">English</button>
+    </div>
+  </div>
+  <nav class="toc" id="toc"></nav>
+
+  <main id="poems"></main>
+
+  <footer>
+    <div class="orn"><svg><use href="#star"/></svg></div>
+    <a class="site" id="home" href="https://vahidtaremi.com/">vahidtaremi.com</a>
+    <button class="theme" id="theme">light · dark</button>
+  </footer>
+</div>
+
+<script>
+const SITE_URL = "https://vahidtaremi.com/";
+
+const S = [
+  { inst:true, en:"Pishdarāmad", sub:"Rhythmic instrumental prelude", fa:"پیش‌درآمد · ضربی" },
+
+  { poet:{fa:"سلیم تهرانی · سده‌ی یازدهم هجری",en:"Salim Tehrani · 17th century"}, en:"Sāz-o-Āvāz", sub:"Song and instrument", fa:"ساز و آواز", v:[
+    { fa:["سوی وطن ز ناله‌ام آشوب می‌برد","قاصد دلش خوش است که مکتوب می‌برد"],
+      en:["My lament carries turmoil toward my homeland —","the messenger rests easy, thinking he bears only a letter."] },
+    { fa:["از خاکِ مصر، آهِ زلیخا بلند کرد","گردی که نورِ دیده‌ی یعقوب می‌برد"],
+      en:["From the soil of Egypt, Zuleikha’s sigh has raised","the very dust that carries light to Jacob’s eyes."] }
+  ]},
+
+  { poet:{fa:"عباس حبیبیان · معاصر، ۱۴۰۱",en:"Abbas Habibian · contemporary, 2022"}, en:"Mah-Khoon", sub:"Tasnif · The Moon’s Blood", fa:"تصنیفِ مه‌خون", v:[
+    { fa:["عاشقی بی‌خطر نمی‌گردد","خونِ عاشق هدر نمی‌گردد"],
+      en:["Love is never without peril;","a lover’s blood is never shed in vain."] },
+    { fa:["بس که خونابه ریخت چشمِ فلک","دیگرش دیده تر نمی‌گردد"],
+      en:["So many tears of blood the eye of heaven has wept,","it can grow wet no more."] },
+    { r:true, fa:["عاشقی بی‌خطر نمی‌گردد","خونِ عاشق هدر نمی‌گردد"],
+      en:["Love is never without peril;","a lover’s blood is never shed in vain."] },
+    { fa:["ریختی خونِ ماه را بر خاک","خونِ او بی‌ثمر نمی‌گردد"],
+      en:["You spilled the moon’s blood upon the earth —","that blood shall not be without fruit."] },
+    { fa:["ز عشقِ دوست هر ساعت درونِ نار می‌رقصم","گهی بر خاک می‌غلتم، گهی بر خاک می‌رقصم"],
+      en:["For love of the Beloved, every hour I dance within the fire;","now I roll upon the dust, now upon the dust I dance."] },
+    { az:["قبرین اوسته رقص‌ایله گلمیشم، سسیز آغلارام","سن‌سیز گچن گون‌لره ایچیمده اود باغلارام","گه آغلارام، گه یانارام","گه آغلارام، گه یانارام"],
+      faTr:["به رقص آمده‌ام بر سرِ خاکِ تو، خاموش می‌گریم","ز روزانِ بی‌تو رفته، در دل آتش می‌گیرم","گهی می‌گریم، گهی می‌سوزم","گهی می‌گریم، گهی می‌سوزم"],
+      en:["Dancing, I have come to your grave; silently I weep.","For the days that passed without you, a fire takes hold within me.","Now I weep, now I burn —","now I weep, now I burn."] },
+    { fa:["آه و فریادِ سینه‌سوزم من","از چه آهم شرر نمی‌گردد"],
+      en:["Mine are the sighs and cries that scorch the breast —","why, then, does my sigh not kindle into flame?"] },
+    { fa:["زلفِ جانان به جانِ ما بسته‌ست","شرحِ او مختصر نمی‌گردد"],
+      en:["The Beloved’s tresses are bound to our very soul;","their tale, like them, can never be made short."] },
+    { fa:["می‌کُشید این جماعتِ عاشق","خونِ عاشق هدر نمی‌گردد"],
+      en:["Go on — slay this company of lovers:","a lover’s blood is never shed in vain."] }
+  ]},
+
+  { poet:{fa:"امیرخسرو دهلوی · سده‌ی هفتم و هشتم هجری",en:"Amir Khosrow Dehlavi · 13th–14th century"}, en:"Sāz-o-Āvāz", sub:"Song and instrument", fa:"ساز و آواز", v:[
+    { fa:["عاشق شدم، این بود گُنه، وای که هجرش","جان برد و از این یک گُنه آزاد نیامد"],
+      en:["I fell in love — that was my sin; and oh, his absence","took my life, yet left me unabsolved of that one sin."] },
+    { fa:["چه سود ازین مُردنِ بی‌بهره که شیرین","روزی به سرِ تُربتِ فرهاد نیامد"],
+      en:["What use is such a fruitless death, when Shirin","never once came to stand at Farhad’s grave?"] },
+    { fa:["گفتی که شبی زود رسم، روزِ بدم بین","کان نیز به روزِ دگرت یاد نیامد"],
+      en:["“One night I’ll come, and soon,” you said — now see my darkened day:","by the next morning, even that had slipped your mind."] },
+    { fa:["فریادکنان دی به سرِ کوی تو رفتم","جز گریه کسی در پیِ فریاد نیامد"],
+      en:["Yesterday I came crying out to your lane;","none answered my cry but my own weeping."] }
+  ]},
+
+  { poet:{fa:"سلیم تهرانی · سده‌ی یازدهم هجری",en:"Salim Tehrani · 17th century"}, en:"Morde-Gardoon", sub:"Tasnif · The Lifeless Heavens", fa:"تصنیفِ مُرده‌گردون", v:[
+    { fa:["خرّم آنان که به دل راهِ تمنا بستند","چشم از هر دو جهان چون لبِ دانا بستند"],
+      en:["Blessed are those who barred their hearts against desire,","and closed their eyes to both worlds, as the wise close their lips."] },
+    { fa:["ابر با سبزه‌ی لب‌تشنه‌ی ما کم‌لطف است","باغبان را چه گنه؟ آب ز بالا بستند"],
+      en:["The cloud is miserly with our thirsting green —","what fault is the gardener’s? The water was stopped from above."] },
+    { fa:["نتوان شب به سرِ کوی تو پنهان آمد","دلِ نالان جرسی بود، که بر ما بستند"],
+      en:["None can steal unseen to your lane by night:","this moaning heart is a bell they have tied upon us."] },
+    { r:true, fa:["زلفِ جانان به جانِ ما بسته‌ست","خونِ او بی‌ثمر نمی‌گردد"],
+      en:["The Beloved’s tresses are bound to our very soul;","that blood shall not be without fruit."] },
+    { fa:["دخترِ تاک حلال آمده در خانه‌ی ما","این نکاحی‌ست که در عالمِ بالا بستند"],
+      en:["The daughter of the vine has come, lawful, into our house —","a marriage sealed in the world above."] },
+    { r:true, fa:["زلفِ جانان به جانِ ما بسته‌ست","خونِ عاشق هدر نمی‌گردد"],
+      en:["The Beloved’s tresses are bound to our very soul;","a lover’s blood is never shed in vain."] },
+    { r:true, fa:["خرّم آنان که به دل راهِ تمنا بستند","چشم از هر دو جهان چون لبِ دانا بستند"],
+      en:["Blessed are those who barred their hearts against desire,","and closed their eyes to both worlds, as the wise close their lips."] }
+  ]},
+
+  { poet:{fa:"سلیم تهرانی · سده‌ی یازدهم هجری",en:"Salim Tehrani · 17th century"}, en:"Sāz-o-Āvāz", sub:"Song and instrument", fa:"ساز و آواز", v:[
+    { fa:["چو در غم‌خانه‌ی ما آید آن دلبر، نمی‌ماند","اگر ماند شبی ماند، شبِ دیگر نمی‌ماند"],
+      en:["When that heart-thief enters our house of sorrow, he does not stay;","if he stays, it is one night — never a second."] },
+    { fa:["چو گل هر عضوم از شوقِ تو پروازِ دگر دارد","پر و بالی که من دارم، به بال و پر نمی‌ماند"],
+      en:["Like a rose, each part of me takes its own flight in longing for you —","these wings of mine resemble no wings at all."] },
+    { fa:["ز تاجِ قیصر و خاقان خبر تا چند می‌پرسی","سلیم آنجا که سر بر باد رفت، افسر نمی‌ماند"],
+      en:["How long will you ask after the crowns of Caesar and the Khan?","Salim — where heads are lost to the wind, no crown remains."] }
+  ]},
+
+  { poet:{fa:"سلیم تهرانی · سده‌ی یازدهم هجری",en:"Salim Tehrani · 17th century"}, en:"Larze-Boom", sub:"Tasnif · The Trembling Land", fa:"تصنیفِ لَرزه‌بوم", v:[
+    { fa:["از غمِ هر کسی این سوخته‌تن می‌لرزد","تیشه بر کوه زنی، خانه‌ی من می‌لرزد"],
+      en:["At everyone’s grief this burnt-out body trembles;","strike your pick against the mountain, and my house shakes."] },
+    { fa:["جوهرِ جرأتِ هر دل ز زبان معلوم است","دَلو در چاه چو خالی‌ست، رَسَن می‌لرزد"],
+      en:["The mettle of a heart is known by its tongue:","when the bucket in the well is empty, the rope trembles."] },
+    { fa:["بس که رسوایی‌ام آورده قیامت به سرش","چون بری نامِ مرا، خاکِ وطن می‌لرزد"],
+      en:["My disgrace has brought such doomsday upon it","that at the mention of my name, the soil of my homeland trembles."] },
+    { fa:["نفسِ بادِ خزان در تو اثر کرده مگر؟","سخت آوازِ تو ای مرغِ چمن می‌لرزد"],
+      en:["Has the breath of the autumn wind touched you, then?","How hard your voice trembles, O bird of the meadow."] },
+    { fa:["دلم از ناله‌ی مرغانِ چمن می‌لرزد","هر که فریاد کند، پیکرِ من می‌لرزد"],
+      en:["My heart trembles at the meadow birds’ lament;","whoever cries out, my whole frame trembles."] }
+  ]},
+
+  { poet:{fa:"سلیم تهرانی · سده‌ی یازدهم هجری",en:"Salim Tehrani · 17th century"}, en:"Sāz-o-Āvāz", sub:"Song and instrument", fa:"ساز و آواز", v:[
+    { fa:["جامه چون عاریت است آگه ازو باید بود","جانِ بیچاره ازان بر سرِ تن می‌لرزد"],
+      en:["Since the garment is only borrowed, one must keep watch over it —","and so the poor soul trembles over the body."] },
+    { fa:["پیشِ او کشته شدن را سببی نیست سلیم","دل چو سیماب ازان در برِ من می‌لرزد"],
+      en:["Before him, Salim, one needs no reason to be slain —","and so my heart trembles in my breast like quicksilver."] }
+  ]},
+
+  { poet:{fa:"عباس حبیبیان · معاصر، ۱۴۰۱",en:"Abbas Habibian · contemporary, 2022"}, en:"Mah-Khoon", sub:"Tasnif · The Moon’s Blood — in Dashti", fa:"تصنیفِ مه‌خون",
+    note:{ en:"The same rhythmic cycle, a different composition — performed in Dashti",
+           fa:"با ایقاعی مشابه — آهنگسازیِ متفاوت، در دشتی" }, v:[
+    { fa:["عاشقی بی‌خطر نمی‌گردد","خونِ عاشق هدر نمی‌گردد"],
+      en:["Love is never without peril;","a lover’s blood is never shed in vain."] },
+    { fa:["بس که خونابه ریخت چشمِ فلک","دیگرش دیده تر نمی‌گردد"],
+      en:["So many tears of blood the eye of heaven has wept,","it can grow wet no more."] },
+    { r:true, fa:["عاشقی بی‌خطر نمی‌گردد","خونِ عاشق هدر نمی‌گردد"],
+      en:["Love is never without peril;","a lover’s blood is never shed in vain."] },
+    { fa:["ریختی خونِ ماه را بر خاک","خونِ او بی‌ثمر نمی‌گردد"],
+      en:["You spilled the moon’s blood upon the earth —","that blood shall not be without fruit."] },
+    { fa:["آه و فریادِ سینه‌سوزم من","از چه آهم شرر نمی‌گردد"],
+      en:["Mine are the sighs and cries that scorch the breast —","why, then, does my sigh not kindle into flame?"] },
+    { fa:["زلفِ جانان به جانِ ما بسته‌ست","شرحِ او مختصر نمی‌گردد"],
+      en:["The Beloved’s tresses are bound to our very soul;","their tale, like them, can never be made short."] },
+    { fa:["می‌کُشید این جماعتِ عاشق","خونِ عاشق هدر نمی‌گردد"],
+      en:["Go on — slay this company of lovers:","a lover’s blood is never shed in vain."] }
+  ]}
+];
+
+/* rays of the shamseh */
+(function(){
+  const g=document.getElementById("rays"); let s="";
+  for(let i=0;i<32;i++){const a=i*Math.PI/16, r1=i%2?47:43, r2=54;
+    s+=`<line x1="${60+r1*Math.cos(a)}" y1="${60+r1*Math.sin(a)}" x2="${60+r2*Math.cos(a)}" y2="${60+r2*Math.sin(a)}"/>`;}
+  g.innerHTML=s;
+})();
+
+const ROMAN=["I","II","III","IV","V","VI","VII","VIII","IX","X"];
+const esc=s=>s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+const P=a=>a.map(l=>`<p>${esc(l)}</p>`).join("");
+let html="", toc="";
+S.forEach((s,i)=>{
+  const id="s"+(i+1);
+  toc+=`<a href="#${id}">${s.en}<span class="fa">${s.fa.replace("تصنیفِ ","")}</span></a>`;
+  if(i) html+=`<div class="orn"><svg><use href="#star"/></svg></div>`;
+  html+=`<section id="${id}"><div class="head">
+    <div class="num">${ROMAN[i]}</div>
+    <div class="fa">${s.fa}</div>
+    <div class="en">${s.en}</div>
+    <div class="sub">${s.sub}</div>
+    ${s.poet?`<div class="poet"><span class="fa-p">${s.poet.fa}</span><span class="en-p">${s.poet.en}</span></div>`:""}
+    ${s.note?`<div class="note">${s.note.en}<span class="fa-n">${s.note.fa}</span></div>`:""}
+  </div>`;
+  if(s.inst){ html+=`<p class="inst">— Instrumental · <span>بی‌کلام</span> —</p></section>`; return; }
+  html+=`<div class="poem"><i class="c1"></i><i class="c2"></i><div class="spine"></div>`;
+  for(const v of s.v){
+    if(v.az){
+      html+=`<div class="row az">
+        <div class="en"><div class="tag">Original in Azerbaijani Turkish</div>${P(v.en)}</div>
+        <div class="fa"><div class="tag">اصلِ شعر به ترکیِ آذربایجانی</div>
+          <div class="az-orig">${P(v.az)}</div>
+          <div class="az-tr"><div class="tag">برگردانِ فارسی</div>${P(v.faTr)}</div>
+        </div></div>`;
+    } else {
+      html+=`<div class="row${v.r?" refrain":""}"><div class="en">${P(v.en)}</div><div class="fa">${P(v.fa)}</div></div>`;
+    }
+  }
+  html+=`</div></section>`;
+});
+document.getElementById("poems").innerHTML=html;
+document.getElementById("toc").innerHTML=toc;
+document.getElementById("home").href=SITE_URL;
+
+document.querySelectorAll(".seg button").forEach(b=>b.onclick=()=>{
+  document.querySelectorAll(".seg button").forEach(x=>x.classList.remove("on"));
+  b.classList.add("on");
+  document.body.classList.remove("only-fa","only-en");
+  if(b.dataset.mode!=="both") document.body.classList.add(b.dataset.mode);
+});
+document.getElementById("theme").onclick=()=>{
+  const r=document.documentElement; r.dataset.theme=r.dataset.theme==="light"?"dark":"light";
+};
+</script>
+</body>
+</html>
