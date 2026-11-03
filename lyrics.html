@@ -163,6 +163,32 @@
   }
   .row.az .en p{font-style:italic}
 
+
+  /* ───── About the work ───── */
+  .about{margin:22px auto 0;max-width:900px;border:1px solid var(--gold-dim);background:var(--card);border-radius:2px}
+  .about summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:14px;padding:14px 18px;color:var(--gold2)}
+  .about summary::-webkit-details-marker{display:none}
+  .about summary svg{width:16px;height:16px;color:var(--gold);transition:transform .4s}
+  .about[open] summary svg{transform:rotate(45deg)}
+  .about summary .en-s{font-family:"Cormorant SC",serif;letter-spacing:.18em;font-size:1rem}
+  .about summary .fa-s{font-family:"Vazirmatn",sans-serif;font-size:.92rem}
+  .about-body{display:grid;grid-template-columns:1fr 1fr;gap:0 56px;padding:6px 32px 28px;border-top:1px solid var(--gold-dim)}
+  .about-body .en{font-size:1.1rem;line-height:1.7}
+  .about-body .en p{margin:14px 0 0;text-wrap:pretty}
+  .about-body .en .last{font-style:italic;color:var(--gold2)}
+  .about-body .en .roles{font-family:"Cormorant SC",serif;letter-spacing:.06em;font-size:.92rem;color:var(--muted);line-height:1.8;margin-top:20px}
+  .about-body .fa{direction:rtl;text-align:right;font-family:"Noto Naskh Arabic",serif;font-size:1.05rem;line-height:2.1}
+  .about-body .fa p{margin:14px 0 0}
+  body.only-fa .about-body .en, body.only-en .about-body .fa{display:none}
+  body.only-fa .about-body, body.only-en .about-body{grid-template-columns:1fr}
+  body.only-fa .about summary .en-s, body.only-en .about summary .fa-s{display:none}
+  @media (max-width:700px){
+    .about-body{grid-template-columns:1fr;padding:4px 18px 22px}
+    .about-body .fa{order:-1;text-align:right;font-size:1rem}
+    .about-body .en{font-size:1.02rem;color:var(--muted)}
+    .about-body .en p:first-child{margin-top:22px;padding-top:18px;border-top:1px dashed var(--gold-dim)}
+    body.only-en .about-body .en p:first-child{border-top:0;padding-top:0;margin-top:14px}
+  }
   /* ───── Footer ───── */
   footer{text-align:center;margin-top:70px}
   footer .fa{font-family:"Noto Nastaliq Urdu",serif;direction:rtl;font-size:1.15rem;line-height:2.2;color:var(--muted)}
@@ -251,6 +277,15 @@
       <button data-mode="only-en">English</button>
     </div>
   </div>
+
+  <details class="about" id="about">
+    <summary><span class="en-s">About the Work</span><svg><use href="#star"/></svg><span class="fa-s">درباره‌ی اثر</span></summary>
+    <div class="about-body">
+      <div class="en"><p>Each of us left a shadow behind in Iran, a part of ourselves shaped under pressure, never fully allowed to emerge.</p><p>Years later, scattered across three European cities, those shadows found their voice again.</p><p><em>Larzeh-Bum</em> (The Trembling Land) brings together classical Persian music and contemporary electronics: the voice of Samin Ghorbani, the Shurangiz of Vahid Taremi, and the electronics and clarinet of Rouzbeh Esfand. Three musicians, separated by distance yet connected through a shared artistic language, giving form to what was left behind.</p><p>Not a retelling of the past, but a voice for what remained unspoken.</p><p><span class="last">This music is our shadow. Now it steps into the light.</span></p>
+        <p class="roles">Samin Ghorbani — Persian classical voice · Germany<br>Rouzbeh Esfand — Electronics, Clarinet &amp; Arrangement · Netherlands<br>Vahid Taremi — Composer, Shurangiz · UK</p></div>
+      <div class="fa"><p>لرزه‌بوم (به معنای سرزمینِ در حالِ لرزیدن) تریویی تلفیقی از موسیقیِ کلاسیکِ ایرانی به همراهِ موسیقیِ الکترونیک است.</p><p>این اثر با نگاهی آوانگارد، با بهره‌گیری از سازِ شورانگیز، موسیقیِ الکترونیک و آوازِ ایرانی، تلاش می‌کند تا صدایی از درونِ روزگارِ معاصر باشد.</p><p>تجربه‌ی زیستی و هنریِ مجریانِ این اثر یک نقطه‌ی اشتراکِ مهم داشته است: همگی بارِ سنگینِ مهاجرت را در زمانی به دوش کشیدند که کشورشان، ایران، یکی از تلخ‌ترین دوره‌های تاریخیِ خود را سپری می‌کرد.</p><p>دوستانی قدیمی در ایران که حالا، بیرون از جغرافیای مشترکِ خود، از موسیقی بندی ساختند تا بند‌بندِ وجودشان را به روی صحنه بیاورند.</p><p>ثمین قربانی، خواننده‌ای توانمند که آوازِ ایرانی را منحصربه‌فرد می‌خواند، از آلمان؛ روزبه اسفند، که موسیقیِ الکترونیک را زندگی کرده و سال‌ها با کلارینتش روی صحنه‌ها و در استودیوها برایمان خاطره ساخته، از هلند؛ و وحید طارمی، که با نگاهی نو به موسیقیِ ایرانی لرزه‌بوم را آهنگسازی کرده و با سازِ شورانگیز، همچون گذشته، تجربه‌ای تازه از صداهای کمتر شنیده‌شده در موسیقیِ ایرانی را به گوش می‌رساند، از انگلستان، دورِ هم جمع شده‌اند تا تن‌لرزه‌های این روزهای جهان را روی صحنه بیاورند.</p></div>
+    </div>
+  </details>
   <nav class="toc" id="toc"></nav>
 
   <main id="poems"></main>
