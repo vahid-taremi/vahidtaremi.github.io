@@ -809,7 +809,7 @@ His contributions also extend to the theater, where he has composed music for se
 
 Vahid Taremi's versatile skills as a composer, instrumentalist, teacher, and collaborator have established him as a prominent figure in Persian music, contributing to its richness and preservation.`;
 let siteData={bio:BIO_DEFAULT,dynEvents:[],dynAlbums:[]};
-let adminPassword=localStorage.getItem('vt_pass_plain')||'707c4e1d92beaf0f0ccfad6c4672254ecd82dfa8d62f423ad5ac4d3ec91e1c9c';
+let adminPassword='';
 let jsonbinKey=localStorage.getItem('vt_jb_key')||'';
 let jsonbinId=localStorage.getItem('vt_jb_id')||'';
 async function loadFromCloud(){
@@ -852,16 +852,8 @@ function switchTab(name){document.querySelectorAll('.admin-tab').forEach(t=>t.cl
 function openLogin(){document.getElementById('login-overlay').classList.add('open');setTimeout(()=>document.getElementById('login-pass').focus(),100);}
 function closeLogin(){document.getElementById('login-overlay').classList.remove('open');document.getElementById('login-err').style.display='none';document.getElementById('login-pass').value='';}
 async function doLogin(){
-  const p = document.getElementById('login-pass').value;
-  const errEl = document.getElementById('login-err');
-  try{
-    const h = await sha256(p);
-    if(h==='707c4e1d92beaf0f0ccfad6c4672254ecd82dfa8d62f423ad5ac4d3ec91e1c9c'){closeLogin();openAdmin();}
-    else{errEl.style.display='block';}
-  } catch(e) {
-    if(p==='Taraneh7760@'){closeLogin();openAdmin();}
-    else{errEl.style.display='block';}
-  }
+  // Admin login disabled: site is edited via GitHub only.
+  document.getElementById('login-err').style.display='block';
 }
 function openAdmin(){document.getElementById('admin-bio').value=siteData.bio;if(jsonbinKey)document.getElementById('setup-notice').style.display='none';document.getElementById('admin-overlay').classList.add('open');}
 function closeAdmin(){document.getElementById('admin-overlay').classList.remove('open');}
@@ -869,7 +861,6 @@ function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('op
 function closeMenu(){document.getElementById('mobileMenu').classList.remove('open');}
 function handleSubmit(e){e.preventDefault();document.getElementById('form-msg').style.display='block';e.target.reset();}
 document.addEventListener('DOMContentLoaded',async()=>{
-if(window.location.search.includes('admin'))openLogin();
   await loadFromCloud();
   document.addEventListener('click',e=>{
     const menu=document.getElementById('mobileMenu'),burger=document.querySelector('.nav-hamburger');
@@ -995,9 +986,6 @@ document.addEventListener('DOMContentLoaded', async function(){
   if(savedBio) siteData.bio = savedBio;
   await loadFromCloud();
   renderDynamic();
-  if(window.location.search.includes('admin')){
-    setTimeout(openLogin, 500);
-  }
 });
 </script>
 <div id="lightbox">
