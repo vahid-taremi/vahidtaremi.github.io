@@ -116,13 +116,24 @@ h2{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,3rem);font-we
 .tour-statement{font-family:'Cormorant Garamond',serif;font-size:1.15rem;line-height:1.7;max-width:640px;color:var(--ink);}
 .tour-statement p{margin-bottom:0.8rem;}
 .tour-statement .last{font-style:italic;color:var(--accent);}
-.tour-posters{display:grid;grid-template-columns:repeat(4,1fr);gap:0.9rem;margin-top:2rem;}
+.tour-posters{display:grid;grid-template-columns:repeat(4,1fr);gap:0.9rem;}
 .tour-posters a{display:block;text-decoration:none;color:var(--muted);}
 .tour-posters img{width:100%;aspect-ratio:4/5;object-fit:cover;display:block;box-shadow:0 6px 22px rgba(15,13,10,0.12);transition:transform 0.3s;}
 .tour-posters a:hover img{transform:translateY(-3px);}
 .tour-posters .cap{font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;margin-top:0.55rem;}
 .tour-credit{font-size:0.72rem;color:var(--muted);margin-top:1.4rem;letter-spacing:0.02em;}
-.event-row.upcoming .event-date::after{content:"Upcoming";display:block;font-family:'Inter',sans-serif;font-size:0.58rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);margin-top:0.2rem;}
+.tour-soldout{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.2rem;color:var(--accent);margin:-0.6rem 0 1.6rem;max-width:640px;}
+.tour-gallery-head{display:flex;align-items:center;gap:1rem;margin:2.6rem 0 1.1rem;font-size:0.65rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--muted);}
+.tour-gallery-head::after{content:"";flex:1;height:1px;background:var(--divider);}
+.tour-gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:0.7rem;grid-auto-flow:dense;}
+.tour-gallery figure{margin:0;overflow:hidden;background:#0b0b10;cursor:zoom-in;aspect-ratio:3/2;}
+.tour-gallery figure.w{grid-column:span 2;aspect-ratio:3.05/1;}
+.tour-gallery figure.t{grid-row:span 2;aspect-ratio:auto;position:relative;min-height:0;}
+.tour-gallery figure.t img{position:absolute;inset:0;}
+.tour-gallery img{width:100%;height:100%;object-fit:cover;object-position:50% 62%;display:block;transition:transform 0.7s ease,opacity 0.4s;}
+.tour-gallery figure.t img{object-position:50% 45%;}
+.tour-gallery figure:hover img{transform:scale(1.035);opacity:0.92;}
+@media(max-width:760px){.tour-gallery{grid-template-columns:1fr 1fr;gap:0.45rem;}.tour-gallery figure.w,.tour-gallery figure.mw{grid-column:span 2;aspect-ratio:2/1;}}
 @media(max-width:760px){.tour-posters{grid-template-columns:1fr 1fr;}.tour-title{font-size:1.9rem;}.tour-title span{display:block;margin:0.2rem 0 0;font-size:1.2rem;}}
 #projects{background:var(--hero-bg);color:var(--ivory);}
 #projects h2{color:var(--ivory);}
@@ -376,15 +387,31 @@ section{padding:4rem 1.2rem;}
     <span class="section-label">Performances</span>
     <h2>Events</h2>
     <div class="tour-feature">
-      <span class="tour-kicker">Part of the 2026 European Tour</span>
+      <span class="tour-kicker">2026 UK Tour · Sold Out</span>
       <h3 class="tour-title">The Trembling Land</h3>
       <div class="tour-sub">A new composition by Vahid Taremi, arranged by Rouzbeh Esfand, featuring vocals by Samin Ghorbani</div>
+      <div class="tour-soldout">Four sold-out nights across Birmingham, Manchester, York and the EFG London Jazz Festival, 12–15 November 2026, met with warm and enthusiastic audiences.</div>
       <div class="tour-statement">
         <p>Each of us left a shadow behind in Iran, a part of ourselves shaped under pressure, never fully allowed to emerge. Years later, scattered across three European cities, those shadows found their voice again.</p>
         <p><em>Larzeh-Bum</em> (The Trembling Land) brings together classical Persian music and contemporary electronics: the voice of Samin Ghorbani, the Shurangiz of Vahid Taremi, and the electronics and clarinet of Rouzbeh Esfand. Three musicians, separated by distance yet connected through a shared artistic language, giving form to what was left behind.</p>
         <p>Not a retelling of the past, but a voice for what remained unspoken.</p>
         <p class="last">This music is our shadow. Now it steps into the light.</p>
       </div>
+      <div class="tour-gallery-head"><span>From the tour</span></div>
+      <div class="tour-gallery">
+        <figure class="w"><img src="images/trembling_live_01.jpg" alt="The Trembling Land — The trio on stage" loading="lazy"></figure>
+        <figure class="t"><img src="images/trembling_live_10.jpg" alt="The Trembling Land — Rouzbeh Esfand, Samin Ghorbani and Vahid Taremi" loading="lazy"></figure>
+        <figure><img src="images/trembling_live_04.jpg" alt="The Trembling Land — Vahid Taremi, shurangiz" loading="lazy"></figure>
+        <figure><img src="images/trembling_live_02.jpg" alt="The Trembling Land — Performing in York" loading="lazy"></figure>
+        <figure class="t"><img src="images/trembling_live_11.jpg" alt="The Trembling Land — Rouzbeh Esfand, Samin Ghorbani and Vahid Taremi" loading="lazy"></figure>
+        <figure class="w"><img src="images/trembling_live_03.jpg" alt="The Trembling Land — The trio in performance" loading="lazy"></figure>
+        <figure><img src="images/trembling_live_06.jpg" alt="The Trembling Land — Vahid Taremi" loading="lazy"></figure>
+        <figure><img src="images/trembling_live_07.jpg" alt="The Trembling Land — Rouzbeh Esfand, Samin Ghorbani and Vahid Taremi" loading="lazy"></figure>
+        <figure><img src="images/trembling_live_05.jpg" alt="The Trembling Land — York, National Centre for Early Music" loading="lazy"></figure>
+        <figure><img src="images/trembling_live_08.jpg" alt="The Trembling Land — Vahid Taremi, shurangiz" loading="lazy"></figure>
+        <figure class="mw"><img src="images/trembling_live_09.jpg" alt="The Trembling Land — Vahid Taremi" loading="lazy"></figure>
+      </div>
+      <div class="tour-gallery-head"><span>Tour posters</span></div>
       <div class="tour-posters">
         <a><img src="images/trembling_birmingham.jpg" alt="The Trembling Land — Birmingham" loading="lazy"><div class="cap">12 Nov · Birmingham</div></a>
         <a><img src="images/trembling_manchester.jpg" alt="The Trembling Land — Manchester" loading="lazy"><div class="cap">13 Nov · Manchester</div></a>
@@ -408,21 +435,21 @@ section{padding:4rem 1.2rem;}
       <div class="concert-strip-item"><img class="pt" src="images/event_12.jpg" loading="lazy"></div>
     </div>
     <div class="events-list" id="events-list">
-      <div class="event-row upcoming">
+      <div class="event-row">
         <div class="event-date">15 Nov 2026</div>
         <div class="event-info"><h3>The Trembling Land — EFG London Jazz Festival, The Tabernacle, London</h3><p>Vahid Taremi: Composer, Shurangiz · Samin Ghorbani: Vocals · Rouzbeh Esfand: Clarinet, Electronics, Arrangements</p></div>
-        <a href="https://www.thetabernaclew11.com/events/2026/11/15/the-trembling-land" target="_blank" rel="noopener noreferrer" class="event-link">Tickets →</a>
+        <a href="https://www.thetabernaclew11.com/events/2026/11/15/the-trembling-land" target="_blank" rel="noopener noreferrer" class="event-link">Details →</a>
       </div>
-      <div class="event-row upcoming">
+      <div class="event-row">
         <div class="event-date">14 Nov 2026</div>
         <div class="event-info"><h3>The Trembling Land — National Centre for Early Music, York</h3><p>Vahid Taremi: Composer, Shurangiz · Samin Ghorbani: Vocals · Rouzbeh Esfand: Clarinet, Electronics, Arrangements</p></div>
-        <a href="https://ncem.co.uk/events/the-trembling-land/" target="_blank" rel="noopener noreferrer" class="event-link">Tickets →</a>
+        <a href="https://ncem.co.uk/events/the-trembling-land/" target="_blank" rel="noopener noreferrer" class="event-link">Details →</a>
       </div>
-      <div class="event-row upcoming">
+      <div class="event-row">
         <div class="event-date">13 Nov 2026</div>
         <div class="event-info"><h3>The Trembling Land — Sahba Academy, Manchester</h3><p>Vahid Taremi: Composer, Shurangiz · Samin Ghorbani: Vocals · Rouzbeh Esfand: Clarinet, Electronics, Arrangements</p></div>
       </div>
-      <div class="event-row upcoming">
+      <div class="event-row">
         <div class="event-date">12 Nov 2026</div>
         <div class="event-info"><h3>The Trembling Land — Shiraz Academy, Birmingham</h3><p>Vahid Taremi: Composer, Shurangiz · Samin Ghorbani: Vocals · Rouzbeh Esfand: Clarinet, Electronics, Arrangements</p></div>
       </div>
@@ -1008,7 +1035,7 @@ document.addEventListener('DOMContentLoaded', async function(){
   const bioSrcs = Array.from(bioImgs).map(i=>i.src);
   
   // Event images
-  const items = document.querySelectorAll('.concert-strip-item img');
+  const items = document.querySelectorAll('.tour-gallery img, .concert-strip-item img');
   const eventSrcs = Array.from(items).map(i=>i.src);
   
   // Combined
